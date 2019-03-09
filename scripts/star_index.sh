@@ -1,15 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=star_index # Job name
-#SBATCH --nodes=1
-#SBATCH --ntasks=8
-#SBATCH --time=120
-#SBATCH --mem=32000 # Memory pool for all cores (see also --mem-per-cpu)
-#SBATCH --partition=production
-#SBATCH --reservation=workshop
-#SBATCH --account=workshop
-#SBATCH --output=slurmout/star-index_%A.out # File to which STDOUT will be written
-#SBATCH --error=slurmout/star-index_%A.err # File to which STDERR will be written
+## assumes star version 2.7.0e
 
 start=`date +%s`
 echo $HOSTNAME
@@ -28,14 +19,12 @@ GTF="../gencode.v29.primary_assembly.annotation.gtf"
 mkdir star.overlap100.gencode.v29
 cd star.overlap100.gencode.v29
 
-module load star/2.7.0e
-
 call="STAR
-     --runThreadN \
+     --runThreadN 8 \
      --runMode genomeGenerate \
      --genomeDir . \
-     --sjdbOverhang 100  \
-     --sjdbGTFfile ${GTF}  \
+     --sjdbOverhang 100 \
+     --sjdbGTFfile ${GTF} \
      --genomeFastaFiles ${FASTA}"
 
 echo $call
