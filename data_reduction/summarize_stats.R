@@ -1,4 +1,4 @@
-if (!any(rownames(installed.packages()) == "rjson")) install.packages("rjson")
+if (!any(rownames(installed.packages()) == "rjson")) install.packages("rjson", repos='http://cran.us.r-project.org')
 require(rjson)
 
 samples <- readLines("samples.txt")
@@ -16,7 +16,7 @@ apps <- apply(sapply(hts_json,names),1, function(x) unique(sub("_[0-9]+$","",x))
 napps <- length(apps)
 apps <- make.names(apps, unique = T)
 
-check_apps <- c("hts_Stats", "hts_SeqScreener", "hts_SuperDeduper", "hts_SeqScreener.1", "hts_AdapterTrimmer", "hts_QWindowTrim", "hts_NTrimmer", "hts_CutTrim", "hts_Stats.1")
+check_apps <- c("hts_Stats", "hts_SeqScreener", "hts_SeqScreener.1", "hts_SuperDeduper", "hts_AdapterTrimmer", "hts_QWindowTrim", "hts_NTrimmer", "hts_CutTrim", "hts_Stats.1")
 if (!(length(check_apps) == length(apps) && all(check_apps == apps))) stop("expected sequence of apps not found")
 
 ## Table of total reads output after each stage
@@ -46,14 +46,14 @@ statsTotalReadsR2_BQ30 <- sapply(hts_json,function(x) unlist(sapply(x[1],"[[","P
 seqScrTotalReadsIn <- sapply(hts_json,function(x) sapply(x[2], "[[","totalFragmentsInput"))
 seqScrTotalReadsHits <- sapply(hts_json,function(x) unlist(sapply(x[2],"[[","Paired_end")[c("PE_hits"),]))
 
-## Super Deduper PCR duplicates
-SdTotalReadsIn <- sapply(hts_json,function(x) sapply(x[3], "[[","totalFragmentsInput"))
-SdTotalReadsIgnored <- sapply(hts_json,function(x) sapply(x[3],"[[","ignored"))
-SdTotalReadsDuplicate <- sapply(hts_json,function(x) sapply(x[3],"[[","duplicate"))
-
 ## Seq Screen rRNA
-seqScr2TotalReadsIn <- sapply(hts_json,function(x) sapply(x[4], "[[","totalFragmentsInput"))
-seqScr2TotalReadsHits <- sapply(hts_json,function(x) unlist(sapply(x[4],"[[","Paired_end")[c("PE_hits"),]))
+seqScr2TotalReadsIn <- sapply(hts_json,function(x) sapply(x[3], "[[","totalFragmentsInput"))
+seqScr2TotalReadsHits <- sapply(hts_json,function(x) unlist(sapply(x[3],"[[","Paired_end")[c("PE_hits"),]))
+
+## Super Deduper PCR duplicates
+SdTotalReadsIn <- sapply(hts_json,function(x) sapply(x[4], "[[","totalFragmentsInput"))
+SdTotalReadsIgnored <- sapply(hts_json,function(x) sapply(x[4],"[[","ignored"))
+SdTotalReadsDuplicate <- sapply(hts_json,function(x) sapply(x[4],"[[","duplicate"))
 
 ## Adapter Trimmer
 AdaptTotalReadsIn <- sapply(hts_json,function(x) sapply(x[5], "[[","totalFragmentsInput"))
@@ -102,13 +102,13 @@ LongTable <- data.frame(
     PhiX_IN = seqScrTotalReadsIn,
     PhiX_Discard = seqScrTotalReadsHits,
     PhiX_Percent_Discard = seqScrTotalReadsHits/seqScrTotalReadsIn*100,
+    rRNA_In = seqScr2TotalReadsIn,
+    rRNA_Identified = seqScr2TotalReadsHits,
+    rRNA_Percent_Identified = seqScr2TotalReadsHits/seqScr2TotalReadsIn*100,
     SuperDeduper_IN = SdTotalReadsIn,
     SuperDeduper_Ignored = SdTotalReadsIgnored,
     SuperDeduper_Duplicate = SdTotalReadsDuplicate,
     SuperDeduper_Percent_Duplicate = SdTotalReadsDuplicate/SdTotalReadsIn*100,
-    rRNA_In = seqScr2TotalReadsIn,
-    rRNA_Identified = seqScr2TotalReadsHits,
-    rRNA_Percent_Identified = seqScr2TotalReadsHits/seqScr2TotalReadsIn*100,
     AdapterTrimmed_IN = AdaptTotalReadsIn,
     AdapterTrimmed_Reads = AdaptTotalAdaptTrim,
     AdapterTrimmed_Percent_Reads = AdaptTotalAdaptTrim/AdaptTotalReadsIn*100,
