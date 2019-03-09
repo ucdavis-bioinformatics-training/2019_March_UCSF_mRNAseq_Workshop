@@ -11,19 +11,21 @@ The primary file types you'll see related to DNA sequence analysis are:
 ## Sequence based file types
 Sequence based files first started out as fasta with paired qual files (Sanger and 454), with Illumina and quality scores being used more, the fastq file became the default output from DNA sequencers. These days additional file types are being used, including fast5 by Oxford Nanopore and 'unmapped' bam files by Pacific Biosciences.
 
-![figure1](filetypes_figures/filetypes_figure1.png)
+<img src="filetypes_figures/filetypes_figure1.png" alt="figure1" width="350px"/>
+
 
 ### fasta
 The fasta format uses the '>' to indicate a new sequence followed by the name of the sequence on the same line. The following line(s) are the DNA sequence and may be split on multiple lines (wrapped), until the next '>' is reached. Genome and transcriptome files are most often in fasta format.
 
-![figure2](filetypes_figures/filetypes_figure2.png)
+<img src="filetypes_figures/filetypes_figure2.png" alt="figure2" width="600px"/>
+
 
 Qual files are so rarely used these days and so are not discussed.
 
 ### fastq
 fastq files combine the sequence and quality scores into 1 file. Each sequence here has 4 lines (should be enforced strictly), header, sequence, historical '+', and quality.
 
-![figure3](filetypes_figures/filetypes_figure3.png)
+<img src="filetypes_figures/filetypes_figure3.png" alt="figure3" width="600px"/>
 
 CASAVA 1.8 Read IDs
 
@@ -45,15 +47,15 @@ Quality scores are paired 1 to 1 with sequence characters.
 
 Each quality character has a numerical value associated with it (ASCII value). In Illumina 1.8+ you subtract 33 from the ascii value associated with the quality character to get the quality score.
 
-![figure5](filetypes_figures/filetypes_figure5.gif)
+<img src="filetypes_figures/filetypes_figure5.png" alt="figure5" width="600px"/>
 
-![figure4b](filetypes_figures/filetypes_figure4b.png)
+<img src="filetypes_figures/filetypes_figure4b.png" alt="figure4b" width="400px"/>
 
-![figure4a](filetypes_figures/filetypes_figure4a.png)
+<img src="filetypes_figures/filetypes_figure4a.png" alt="figure4a" width="400px"/>
 
 ## Annotation based file Types
 
-### Gene Transfer Format (GTF)/ Gene Feature Format (GFF)
+### Gene Transfer Format (GTF) / Gene Feature Format (GFF)
 
 Describes feature (ex. gene) locations within a sequence file (ex. genome).
 
@@ -72,7 +74,7 @@ Strand: Defined as ‘+’ (forward),or ‘-’ (reverse)
 * Frame: One of ‘0’, ‘1’, ‘2’, ‘0’ represents the first base of a codon.
 * Attribute: A semicolon-separated list of tag-value pairs, providing additional information about each feature.
 
-![figure6](filetypes_figures/filetypes_figure6.png)
+<img src="filetypes_figures/filetypes_figure6.png" alt="figure6" width="600px"/>
 
 #### Sources
 * Ensembl genomes ( http://ensemblgenomes.org/ ) and annotation at Biomart ( http://www.ensembl.org/biomart/martview/ )
@@ -133,7 +135,7 @@ Many more tags are detailed in the specifications.
 
 The alignment section consists of 11 tab delimited fields.
 
-![figure7](filetypes_figures/filetypes_figure7.png)
+<img src="filetypes_figures/filetypes_figure7.png" alt="figure7" width="500px"/>
 
 **QNAME: Query name**  
 Read IDs are truncated at first whitespace (spaces / tabs), which can make them non-unique. Illumina reads with older IDs have trailing “/1” and “/2” stripped (this information is recorded in the next field). Illumina reads with newer IDs have second block stripped (read number is recorded in the next field).
@@ -141,8 +143,9 @@ Read IDs are truncated at first whitespace (spaces / tabs), which can make them 
 @FCC6889ACXX:5:1101:8446:45501#CGATGTATC/1 ⇒ @FCC6889ACXX:5:1101:8446:45501  
 @HISEQ:153:H8ED7ADXX:1:1101:1368:2069 1:N:0:ATCACG ⇒ @HISEQ:153:H8ED7ADXX:1:1101:1368:2069
 
-**FLAG: Alignment flags**  
-![figure8](filetypes_figures/filetypes_figure8.png)
+**FLAG: Alignment flags**
+
+<img src="filetypes_figures/filetypes_figure8.png" alt="figure8" width="600px"/>
 
 Tool to help explain flags
 
@@ -178,8 +181,9 @@ The CIGAR string is used to calculate how a sequence aligns to the reference. Fo
 
 e.g. “100M” means that all 100 bases in the read align to bases in the reference.
 
-![figure10](filetypes_figures/filetypes_figure10.png)
-![figure9](filetypes_figures/filetypes_figure9.png)
+<img src="filetypes_figures/filetypes_figure10.png" alt="figure10" width="350px"/>
+
+<img src="filetypes_figures/filetypes_figure9.png" alt="figure9" width="350px"/>
 
 * “Consumes query” and “consumes reference” indicate whether the CIGAR operation causes the alignment to step along the query sequence and the reference sequence respectively.
 * H can only be present as the first and/or last operation.

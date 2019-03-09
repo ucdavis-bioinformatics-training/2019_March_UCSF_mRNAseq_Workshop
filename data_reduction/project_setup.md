@@ -7,7 +7,7 @@ Let's set up a project directory for the week, and talk a bit about project phil
     cd
     mkdir -p /share/workshop/$USER/rnaseq_example
 
-    ---
+---
 
 **2a\.** Next, go into that directory, create a raw data directory (we are going to call this 00-RawData) and cd into that directory. Lets then create symbolic links to the sample directories that contains the raw data.
 

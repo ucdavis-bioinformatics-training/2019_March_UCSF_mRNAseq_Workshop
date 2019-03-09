@@ -5,9 +5,10 @@
 #SBATCH --ntasks=9
 #SBATCH --time=60
 #SBATCH --mem=3000 # Memory pool for all cores (see also --mem-per-cpu)
-#SBATCH --partition=gc
+#SBATCH --partition=production
 #SBATCH --reservation=workshop
-#SBATCH --array=1-24
+#SBATCH --account=workshop
+#SBATCH --array=1-16
 #SBATCH --output=slurmout/htstream_%A_%a.out # File to which STDOUT will be written
 #SBATCH --error=slurmout/htstream_%A_%a.err # File to which STDERR will be written
 
@@ -27,8 +28,8 @@ module load htstream
 
 call="hts_Stats -O -L ${outpath}/${sample}/${sample}_htsStats.log -1 00-RawData/${sample}/*R1* -2 00-RawData/${sample}/*R2* | \
       hts_SeqScreener -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
+      hts_SeqScreener -s References/human_rrna.fasta -r -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
       hts_SuperDeduper -e 250000 -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
-      hts_SeqScreener -s ref/rrna.fasta -r -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
       hts_AdapterTrimmer -n -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
       hts_QWindowTrim -n -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
       hts_NTrimmer -n -S -O -A -L ${outpath}/${sample}/${sample}_htsStats.log | \
