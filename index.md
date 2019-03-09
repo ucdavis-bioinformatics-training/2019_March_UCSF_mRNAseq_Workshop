@@ -1,37 +1,60 @@
-## Welcome to GitHub Pages
+---
+title: March 2019 mRNA-Seq Workshop Home
+---
 
-You can use the [editor on GitHub](https://github.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## UC Davis Genome Center [*Bioinformatics Core*](http://bioinformatics.ucdavis.edu/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Cheat Sheets
+=======
 
-### Markdown
+[Cheat Sheets](cheatSheetIndex.md)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+[Welcome](pdfs/Introduction.pdf)
 
-```markdown
-Syntax highlighted code block
+[What is Bioinformatics](pdfs/What_is_Bioinformatics.pdf)
 
-# Header 1
-## Header 2
-### Header 3
+Introductory Command line and cluster
+=======
+* [Logging In and transferring files](cli/logging-in)
+* [Intro to command-line](cli/Intro2CLI.pdf) (talk)
+* [Intro to command-line walk-through](cli/Intro2CLI)
+* [Intro to command-line files](https://github.com/ucdavis-bioinformatics-training/2018-June-RNA-Seq-Workshop/tree/master/cli/Intro2CLI-files)
+* [Advanced command-line](cli/advanced-command-line)
+* [Running jobs on the Cluster and using modules](cli/cluster)
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+* [Intro to Sequencing]() (talk)
 
-**Bold** and _Italic_ and `Code` text
+Data Reduction
+=======
+* [Files and Filetypes for RNA-Seq](data_reduction/Filetypes.pdf) (talk)
+* [Project Setup](data_reduction/project_setup.md)
+* [Preprocessing Data](data_reduction/preproc_htstream.md)
+* [Aligners](data_reduction/alignment.md)
+* [Generating Summarized Counts](data_reduction/counts.md)
 
-[Link](url) and ![Image](src)
-```
+* [Experimental Design and Cost Estimation](data_reduction/ExperimentalDesign.pdf) (talk)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Intro to R
+========
+* [Intro to R](Intro2R/Intro2R.html)
 
-### Jekyll Themes
+Differential Expression and Pathway Analysis
+========
+* [DE Analysis: counts to lists of DE genes](thursday/DE.html)
+  * [The R Markdown file](thursday/DE.Rmd)
+* [Gene Ontology and KEGG Pathway Enrichment Analyses](friday/enrichment.html)
+  * [The R Markdown file](friday/enrichment.Rmd)
+* [Generating figures](friday/script_plots.md)
+  * [The R Markdown file](friday/script_plots.Rmd)
+  * [I5_v_C_time6.txt](friday/I5_v_C_time6.txt)
+  * [I5_v_C_time6_KEGG.txt](friday/I5_v_C_time6_KEGG.txt)
+  * [metafile](friday/metafile.txt)
+  * [all_counts.txt](friday/all_counts.txt)
+  * [all files for plots](friday/files_for_plots.zip)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+* [Closing thoughts](friday/Closing_Thoughts.pdf)
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Lunch and Learns
+========
+Lexogen, Qiagen, Illumina, 10X
