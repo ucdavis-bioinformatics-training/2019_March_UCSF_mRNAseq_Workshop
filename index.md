@@ -27,7 +27,7 @@ Introductory Command line and cluster
 
 Data Reduction
 =======
-* [Files and Filetypes for RNA-Seq](data_reduction/Filetypes.pdf) (talk)
+* [Files and Filetypes for RNA-Seq](data_reduction/filetypes.md)
 * [Project Setup](data_reduction/project_setup.md)
 * [Preprocessing Data](data_reduction/preproc_htstream.md)
 * [Aligners](data_reduction/alignment.md)
