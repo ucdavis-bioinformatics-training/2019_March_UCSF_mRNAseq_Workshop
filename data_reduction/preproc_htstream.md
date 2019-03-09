@@ -1,6 +1,8 @@
-## Sequence preprocessing
+# Sequence preprocessing
 
-**Why preprocess reads**
+This document assumes [project_setup](./project_setup.md) has been completed.
+
+## Why preprocess reads
 
 We have found that aggressively “cleaning” and processing reads can make a large difference to the speed and quality of mapping and assembly results. Cleaning your reads means, removing reads/bases that are:
   * Unwanted sequence (Ex. polyA tails in RNAseq data)
@@ -31,7 +33,7 @@ Preprocessing also produces a number of statistics that are technical in nature 
 
 <img src="preproc_figures/preproc_flowchart.png" alt="preproc_flowchart" width="600px"/>
 
-RNAseq preprocessing workflow
+## RNAseq preprocessing workflow
 
 1. Remove contaminants (at least PhiX).
 1. Remove PCR duplicates.
@@ -45,7 +47,7 @@ RNAseq preprocessing workflow
   * Run a polyA/T trimmer (optional)
   * Produce preprocessing statistics
 
-### HTStream - preprocessing application
+## HTStream - preprocessing application
 
 Can be downloaded from [here](https://github.com/ibest/HTStream). Fast C++ implementation, designed to have discreet applications that can be pipelined together using unix piping. We hope in the long run to include any and all needed preprocessing routines. Includes:
 
@@ -616,7 +618,7 @@ We can watch the progress of our task array using the 'squeue' command. Takes ab
 
 ---
 
-**7.** Preprocessing statistics as QA/QC.
+## Quality Assurance - Preprocessing statistics as QA/QC.
 
 Beyond generating "better" data for downstream analysis, cleaning statistics also give you an idea as to the original quality and complexity of the sample, library generation, and sequencing quality.
 
@@ -627,7 +629,7 @@ I’ve found it best to perform QA/QC on both the run as a whole (poor samples c
 Reports such as Basespace for Illumina, are great ways to evaluate the run as a whole, the sequencing provider usually does this for you.  
 PCA/MDS plots of the preprocessing summary are a great way to look for technical bias across your experiment. Poor quality samples often appear as outliers on the MDS plot and can ethically be removed due to identified technical issues.
 
-**8\.** Let's make sure that all jobs completed successfully.
+**1\.** Let's make sure that all jobs completed successfully.
 
 Lets first check all the "htstream_%\*.out" and "htstream_%\*.err" files:
 
@@ -652,7 +654,7 @@ If, for some reason, your jobs did not finish or something else went wrong, plea
 
 ---
 
-**9.** Let's take a look at the differences between the input and output files. First look at the input file:
+**2.** Let's take a look at the differences between the input and output files. First look at the input file:
 
     cd /share/workshop/$USER/rnaseq_example
     zless 00-RawData/SampleAC1/SampleAC1_L3_R1.fastq.gz
@@ -674,7 +676,7 @@ Lets grep for the sequence and count occurances
 
 ---
 
-**10.** QA/QC Summary table of the json files.
+**3.** QA/QC Summary table of the json files.
 
 I've created a small R script to read in each json file, pull out some relevant stats and write out a table for all samples.
 
@@ -690,7 +692,7 @@ Lets move this file to our computer, using scp or winSCP, or copy/paste from cat
 
 *Anything else worth discussing?*
 
-**11.** Scripts
+## Scripts
 
 slurm script for preprocessing using slurm task array and htstream
 
