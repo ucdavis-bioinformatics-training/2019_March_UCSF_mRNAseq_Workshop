@@ -84,12 +84,12 @@ Finally, we want to combine all of these columns together using the 'paste' comm
 
 We take the samples.txt file and pipe that to the sort (to ensure they are in the same order) and then 'paste' command with the '-s' option, which takes a column of values and transposes them into a row, separated by the tab character. And finally, let's put everything together:
 
-    cat <(cat samples.txt | sort | paste -s) 03-Counts/tmp/tmp.out > 03-Counts/all_counts.txt
+    cat <(cat samples.txt | sort | paste -s) 03-Counts/tmp/tmp.out > 03-Counts/rnaseq_workshop_counts.txt
     rm -rf 03- Counts/tmp
-    head 03-Counts/all_counts.txt
+    head 03-Counts/rnaseq_workshop_counts.txt
 
 ```
-msettles@tadpole:/share/workshop/msettles/rnaseq_example$ head 03-Counts/all_counts.txt
+msettles@tadpole:/share/workshop/msettles/rnaseq_example$ head 03-Counts/rnaseq_workshop_counts.txt
 SampleAC1	SampleAC2	SampleAC3	SampleAC4	SampleAD1	SampleAD2	SampleAD3	SampleAD4	SampleBC1	SampleBC2	SampleBC3	SampleBC4	SampleBD1	SampleBD2	SampleBD3	SampleBD4
 ENSG00000223972.5	3	1	0	0	0	0	0	0	2	0	0	0	0	5	0	0
 ENSG00000227232.5	20	7	15	10	7	9	15	26	6	10	6	6	14	10	4	4
@@ -99,5 +99,19 @@ ENSG00000284332.1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 ENSG00000237613.2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 ENSG00000268020.3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 ENSG00000240361.2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-ENSG00000186092.6	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0```
+ENSG00000186092.6	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+```
+
 And now you have a raw counts file that has a count for every gene, per sample. You will use this file for the next step, which is analysis in R.
+
+**6\.** Transfer rnaseq_workshop_counts.txt to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
+
+In a new shell session on your laptop. **NOT logged into tadpole**.
+
+    mkdir ~/rnaseq_workshop
+    cd ~/rnaseq_workshop
+    scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/03-Counts/rnaseq_workshop_counts.txt .
+
+Its ok of the mkdir command fails ("File exists") because we aleady created the directory earlier.
+
+Open in excel (or excel like application), and lets review.
