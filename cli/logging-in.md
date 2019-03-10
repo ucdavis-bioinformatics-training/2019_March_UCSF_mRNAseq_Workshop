@@ -31,11 +31,17 @@ OR
 3. [MobaXterm](https://mobaxterm.mobatek.net/)
 4. [PuTTY](http://www.putty.org/)
 
-Then,
-1. Open up terminal (putty, mobaxterm, or ubuntu).
+In putty, mobaxterm:
+1. Open up terminal.
 2. In the Host Name field, type **tadpole.genomecenter.ucdavis.edu**
 3. Make sure the Connection Type is SSH.
 4. Press "Open". It will ask you for your username and password.
+
+In Shell with SSH enabled:
+
+    ssh username@tadpole.genomecenter.ucdavis.edu
+
+where 'username' is replaced with your username. Press Enter.
 
 ### For Windows - Transferring files
 
