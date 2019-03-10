@@ -553,11 +553,13 @@ Note the patterns:
 
 ---
 
-**6\.** We can now run the preprocessing routine across all samples on the real data using a SLURM script, [hts_preproc.slurm](./hts_preproc.slurm), that we should take a look at now.
+**6\.** We can now run the preprocessing routine across all samples on the real data using a SLURM script, [hts_preproc.slurm](../scripts/hts_preproc.slurm), that we should take a look at now.
 
     cd /share/workshop/$USER/rnaseq_example  # We'll run this from the main directory
-    cp /share/biocore/workshops/2019_March_RNAseq/hts_preproc.slurm .
-    cat hts_preproc.slurm
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/scripts/hts_preproc.slurm
+    less hts_preproc.slurm
+
+ When you are done, type "q" to exit.
 
 ```
 msettles@tadpole:/share/workshop/msettles/rnaseq_example$cat hts_preproc.slurm
@@ -607,7 +609,7 @@ runtime=$((end-start))
 echo $runtime
 ```
 
-After looking at the script, lets make a slurmout directory for the output to go and let's run it. First we'll need to produce a list of samples for the script to work on.
+After looking at the script, lets make a slurmout directory for the output to go and let's run it.
 
     mkdir slurmout
     sbatch hts_preproc.slurm  # moment of truth!
@@ -667,7 +669,7 @@ Now look at the output file:
 
 If you scroll through the data (using the spacebar), you will see that some of the sequences have been trimmed. Now, try searching for **AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC** again. You shouldn't find it (adapters were trimmed remember), but rarely is anything perfect. You may need to use Control-C to get out of the search and then "q" to exit the 'less' screen.
 
-Lets grep for the sequence and count occurances
+Lets grep for the sequence and count occurrences
 
     zcat  00-RawData/SampleAC1/SampleAC1_L3_R1.fastq.gz | grep  AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC | wc -l
     zcat  01-HTS_Preproc/SampleAC1/SampleAC1_R1.fastq.gz | grep  AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC | wc -l
@@ -681,12 +683,21 @@ Lets grep for the sequence and count occurances
 I've created a small R script to read in each json file, pull out some relevant stats and write out a table for all samples.
 
     cd /share/workshop/$USER/rnaseq_example  # We'll run this from the main directory
-    cp /share/biocore/workshops/2019_March_RNAseq/summarize_stats.R .
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/scripts/summarize_stats.R
 
     R CMD BATCH summarize_stats.R
     cat summary_hts.txt
 
-Lets move this file to our computer, using scp or winSCP, or copy/paste from cat [sometimes doesn't work], open in excel (or excel like application), you may have to move the header column 1 cell to the right, and lets review.
+
+**4\.** Transfer summarize_stats.R to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
+
+In a new shell session on your laptop. **NOT logged into tadpole**.
+
+    mkdir ~/rnaseq_workshop
+    cd ~/rnaseq_workshop
+    scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/summarize_stats.R .
+
+Open in excel (or excel like application), you may have to move the header column 1 cell to the right, and lets review.
 
 *Any problematic samples?*
 
