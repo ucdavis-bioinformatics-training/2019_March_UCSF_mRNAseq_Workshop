@@ -8,6 +8,63 @@ This document assumes [preproc htstream](./preproc_htstream.md) has been complet
     cp -r /share/biocore/workshops/2019_March_RNAseq/01-HTS_Preproc /share/workshop/$USER/rnaseq_example/.
     cp  /share/biocore/workshops/2019_March_RNAseq/summary_hts.txt /share/workshop/$USER/rnaseq_example/.
 
+## Alignment vs Assembly
+
+Given sequence data, \\
+_Assembly seeks to put together the puzzle without knowing what the picture is._  
+_Mapping tries to put together the puzzle pieces directly onto an image of the picture._
+
+In mapping the question is more, given a small chunk of sequence, where in the genome did this piece most likely come from.
+
+The goal then is to find the match(es) with either the “best” edit distance (smallest), or all matches with edit distance less than max edit dist. Main issues are:
+
+* Large search space
+* Regions of similarity (aka repeats)
+* Gaps (INDELS)
+* Complexity (RNA, transcripts)
+
+#### Considerations
+* Placing reads in regions that do not exist in the reference genome (reads extend off the end) [ mitochondrial, plasmids, structural variants, etc.].
+* Sequencing errors and variations: alignment between read and true source in genome may have more differences than alignment with some other copy of repeat.
+* What if the closest fully sequenced genome is too divergent? (3% is a common alignment capability)
+* Placing reads in repetitive regions: Some algorithms only return 1 mapping; If multiple: map quality = 0
+* Algorithms that use paired-end information => might prefer correct distance over correct alignment.
+
+In RNAseq data, you must also consider effect of splice junctions, reads may span an intron.
+
+<img src="alignment_figures/alignment_figure1.png" alt="alignment_figure1" width="600px"/>
+
+Many [alignment algorithm](https://en.wikipedia.org/wiki/List_of_sequence_alignment_software
+) to choose from.
+* Spliced Aligners
+  * STAR
+  * HiSAT2 (formerly Tophat [Bowtie2])
+  * GMAP - GSNAP
+  * SOAPsplice
+  * MapSplice
+* Aligners that can ’clip’
+  * bwa-mem
+  * Bowtie2 in local mode
+
+### Mapping against the genome vs transcriptome
+
+* May seem intuitive to map RNAseq data to transcriptome, but it is not that simple.
+  * Transcriptomes are rarely complete.
+  * Which transcript of a gene should you map to, canonical transcript?
+  * Shouldn’t map to all splice variants as these would show up as ‘multi-mappers’.
+* More so, a mapper will try to map every read, somewhere, provided the result meets its minimum requirements.
+  * Need to provide a mapper with all possible places the read could have arisen from, which is best represented by the genome.
+  * Otherwise, you get mis-mapping because its close enough.
+
+### Genome and Genome Annotation
+
+Genome sequence fasta files and annotation (gff, gtf) files go together! These should be identified at the beginning of analysis.
+* Genome fasta files should include all primary chromosomes, unplaced sequences and un-localized sequences, as well as any organelles. Should bet contain any contigs that represent patches, or alternative haplotypes.
+* If you expect contamination, or the presence of additional sequence/genome, add the sequence(s) to the genome fasta file.
+* Annotation file should be GTF (preferred), and should be the most comprehensive you can find.
+  * Chromosome names in the GTF must match those in the fasta file (they don’t always do).
+  * Star recommends the Genecode annotations for mouse/human
+
 ## Reference sequence and annotation
 
 **1\.** First lets make sure we are where we are supposed to be and that the References directory is available.
