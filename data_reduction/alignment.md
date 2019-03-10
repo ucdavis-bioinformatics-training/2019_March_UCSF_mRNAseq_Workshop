@@ -50,6 +50,12 @@ Many [alignment algorithm](https://en.wikipedia.org/wiki/List_of_sequence_alignm
   * Bowtie2 in local mode
 
 #### Pseudo-aligners (salmon and kalisto)
+* Quasi-mapping 
+* Probabilistic
+* Map to transcripts, not genome
+* Does transcript quantifications (or gene)
+* Blazing FAST and can run on most laptops
+* Experience suggests differences between “traditional” mappers are in the low abundance genes.
 
 ### Mapping against the genome vs transcriptome
 
