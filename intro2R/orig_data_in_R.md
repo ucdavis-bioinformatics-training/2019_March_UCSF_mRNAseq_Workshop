@@ -1,8 +1,9 @@
 ---
 title: "Data_in_R"
-author: "Your Name
+author: "Matt Settles"
 output:
-    notebook: default
+    html_document:
+      keep_md: TRUE
 ---
 
 Recreating (and maybe improving on) some of the figures generated with plot-bamstats application in R.
@@ -82,11 +83,12 @@ dir()
 ##  [1] "bwa_mem_Stats.log"      "Data_in_R_figures"     
 ##  [3] "Data_in_R_files"        "data_in_R_prepare.html"
 ##  [5] "data_in_R_prepare.md"   "data_in_R_prepare.Rmd" 
-##  [7] "Intro2R_figures"        "Intro2R_files"         
-##  [9] "Intro2R.html"           "Intro2R.md"            
-## [11] "Intro2R.Rmd"            "orig_data_in_R.html"   
-## [13] "orig_data_in_R.Rmd"     "output.txt"            
-## [15] "RStudio_figures"        "RStudio.md"
+##  [7] "data_in_R.Rmd"          "Intro2R_figures"       
+##  [9] "Intro2R_files"          "Intro2R.html"          
+## [11] "Intro2R.md"             "Intro2R.Rmd"           
+## [13] "orig_data_in_R.html"    "orig_data_in_R.md"     
+## [15] "orig_data_in_R.Rmd"     "output.txt"            
+## [17] "RStudio_figures"        "RStudio.md"
 ```
 
 ```r
