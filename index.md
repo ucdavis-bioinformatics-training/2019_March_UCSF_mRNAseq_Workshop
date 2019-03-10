@@ -25,10 +25,11 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Aligners](data_reduction/alignment.md)
 * [Generating Summarized Counts](data_reduction/counts.md)
 
-<!--
-## Intro to R
-* [Intro to R](Intro2R/Intro2R.html)
+## Intro to R and Rstudio
+* [Getting Started](intro2R/RStudio.md)
+* [Intro to R](Intro2R/Intro2R.md)
 
+<!--
 ## Differential Expression and Pathway Analysis
 * [DE Analysis: counts to lists of DE genes](thursday/DE.html)
   * [The R Markdown file](thursday/DE.Rmd)

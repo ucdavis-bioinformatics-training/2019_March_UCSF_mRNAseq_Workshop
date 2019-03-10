@@ -104,7 +104,7 @@ Because one of the first things that's good to know is *how to escape once you'v
 
     sleep 1000  # wait for 1000 seconds!
 
-Use Ctrl-c (shows as '^C'in screen) to exit (kill) a command. In some cases, a different key sequence is required (Ctrl-d).
+Use Ctrl-c (shows as '^C' in screen) to exit (kill) a command. In some cases, a different key sequence is required (Ctrl-d).
 
 ## Getting Around
 
