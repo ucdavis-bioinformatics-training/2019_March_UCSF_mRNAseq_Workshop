@@ -104,13 +104,14 @@ ENSG00000186092.6	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 
 And now you have a raw counts file that has a count for every gene, per sample. You will use this file for the next step, which is analysis in R.
 
-**6\.** Transfer rnaseq_workshop_counts.txt to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
+**6\.** Transfer rnaseq_workshop_counts.txt and samples.txt to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
 
 In a new shell session on your laptop. **NOT logged into tadpole**.
 
     mkdir ~/rnaseq_workshop
     cd ~/rnaseq_workshop
     scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/03-Counts/rnaseq_workshop_counts.txt .
+    scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/samples.txt .
 
 Its ok of the mkdir command fails ("File exists") because we aleady created the directory earlier.
 
