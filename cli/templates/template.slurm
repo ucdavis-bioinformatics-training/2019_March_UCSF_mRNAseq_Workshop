@@ -10,8 +10,8 @@
 #SBATCH --reservation=workshop # cluster reservation
 #SBATCH --account=workshop # cluster account to use for the job
 ##SBATCH --array=1-16 # Task array indexing, see https://slurm.schedmd.com/job_array.html, the double # means this line is commented out
-#SBATCH --output=slurmout/htstream_%A_%a.out # File to which STDOUT will be written
-#SBATCH --error=slurmout/htstream_%A_%a.err # File to which STDERR will be written
+#SBATCH --output=stdout.out # File to which STDOUT will be written
+#SBATCH --error=stderr.err # File to which STDERR will be written
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=myemail@email.com
 

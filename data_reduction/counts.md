@@ -114,4 +114,6 @@ In a new shell session on your laptop. **NOT logged into tadpole**.
 
 Its ok of the mkdir command fails ("File exists") because we aleady created the directory earlier.
 
-Open in excel (or excel like application), and lets review.
+Open in excel (or excel like application), you may have to move the header column 1 cell to the right, and lets review.
+
+*Anything else worth discussing?*

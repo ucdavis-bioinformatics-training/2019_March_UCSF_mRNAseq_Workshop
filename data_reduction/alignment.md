@@ -267,6 +267,7 @@ msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$
 
 We need to index the BAM file:
 
+    cd /share/workshop/$USER/rnaseq_example/HTS_testing
     samtools index SampleAC1.streamed_Aligned.sortedByCoord.out.bam
 
 **IF** for some reason it didn't finish, is corrupted or you missed the session, you can copy over a completed copy
@@ -321,7 +322,7 @@ Now your alignment is loaded. Any loaded bam file aligned to a genome is called 
 
 <img src="alignment_figures/index_igv9.png" alt="index_igv9" width="600px"/>
 
-You will need to zoom in by clicking on the plus sign (top right) or zoom out by clicking the negative sign. You also may have to move around by clicking and dragging in the BAM track window.
+You can zoom in by clicking on the plus sign (top right) or zoom out by clicking the negative sign. You also may have to move around by clicking and dragging in the BAM track window.
 
 You can also zoom in by clicking and dragging across the number line at the top. That section will highlight, and when you release the button, it will zoom into that section.
 
@@ -334,7 +335,7 @@ Reset the window by searching for HBB again. And zoom in 1 step.
 <img src="alignment_figures/index_igv12.png" alt="index_igv12" width="600px"/>
 
 ---
-**13\.** See that the reads should be aligning within the exons in the gene. This makes sense, since RNA-Seq reads are from exons. Play with the settings on the right hand side a bit.
+**7\.** See that the reads should be aligning within the exons in the gene. This makes sense, since RNA-Seq reads are from exons. Play with the settings on the right hand side a bit.
 
 <img src="alignment_figures/index_igv13.png" alt="index_igv13" width="600px"/>
 
@@ -418,12 +419,11 @@ We can watch the progress of our task array using the 'squeue' command. Takes ab
 
 ## Quality Assurance - Mapping statistics as QA/QC.
 
-**1\.** Once your jobs have finished successfully, use a script of ours, [star_stats.sh](../scripts/star_stats.sh) to collect the alignment stats. Don't worry about the script's contents at the moment; you'll use very similar commands to create a counts table in the next section. For now:
+**1\.** Once your jobs have finished successfully (check the error and out logs like we did in the previous exercise), use a script of ours, [star_stats.sh](../scripts/star_stats.sh) to collect the alignment stats. Don't worry about the script's contents at the moment; you'll use very similar commands to create a counts table in the next section. For now:
 
     cd /share/workshop/$USER/rnaseq_example  # We'll run this from the main directory
     wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/scripts/star_stats.sh
     bash star_stats.sh
-
 
 **2\.** Transfer summary_alignments.txt to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
 
@@ -443,7 +443,11 @@ The table that this script creates ("alignment_stats.txt") can be pulled to your
 
 slurm script for indexing the genome
 
-[star.slurm](../scripts/star_index.slurm)
+[star_index.slurm](../scripts/star_index.slurm)
+
+shell script for indexing the genome
+
+[star_index.sh](../scripts/star_index.sh)
 
 slurm script for mapping using slurm task array and star
 
