@@ -125,7 +125,7 @@ applications (like RNA-Seq ... would “cancel” out anyway).
 <img src="alignment_figures/alignment_figure3.png" alt="alignment_figure3" width="400px"/>  
 * Inner length, insert size, fragment length  
 <img src="alignment_figures/alignment_figure4.jpg" alt="alignment_figure4" width="400px"/>  
-\*From https://www.biostars.org/p/106291/
+*From https://www.biostars.org/p/106291/
 
 ## Indexing a Reference sequence and annotation
 
