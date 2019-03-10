@@ -25,7 +25,7 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Aligners](data_reduction/alignment.md)
 * [Generating Summarized Counts](data_reduction/counts.md)
 
-<--
+<!--
 ## Intro to R
 * [Intro to R](Intro2R/Intro2R.html)
 
