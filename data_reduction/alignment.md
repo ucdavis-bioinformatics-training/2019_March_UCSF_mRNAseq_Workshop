@@ -39,7 +39,7 @@ We need to first get the url for the genome fasta.
  #SBATCH --nodes=1
  #SBATCH --ntasks=8
  #SBATCH --time=120
- #SBATCH --mem=32000 # Memory pool for all cores (see also --mem-per-cpu)
+ #SBATCH --mem=40000 # Memory pool for all cores (see also --mem-per-cpu)
  #SBATCH --partition=production
  #SBATCH --reservation=workshop
  #SBATCH --account=workshop
@@ -89,7 +89,7 @@ We need to first get the url for the genome fasta.
 
 This step will take a couple hours. You can look at the [STAR documentation](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) while you wait. All of the output files will be written to the star_index directory.
 
-Takes about 1:45 to run.
+Takes about 2:00 to run.
 
 **IF** for some reason it didn't finish, is corrupted, or you missed the session, you can copy over a completed copy.
 

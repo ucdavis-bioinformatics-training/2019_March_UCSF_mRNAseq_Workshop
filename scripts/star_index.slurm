@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=8
 #SBATCH --time=120
-#SBATCH --mem=32000 # Memory pool for all cores (see also --mem-per-cpu)
+#SBATCH --mem=40000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production
 #SBATCH --reservation=workshop
 #SBATCH --account=workshop

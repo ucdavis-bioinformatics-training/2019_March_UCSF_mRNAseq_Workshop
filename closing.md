@@ -76,7 +76,7 @@ Exercises will be performed with provided datasets, using command-line interacti
 
 For more information and to register, go to https://registration.genomecenter.ucdavis.edu/.
 
-**December: Bioinformatis Prerequisites Workshop @ UC Davis**
+**December: Bioinformatics Prerequisites Workshop @ UC Davis**
 
 This workshop will cover the basic prerequisites required before performing bioinformatics analysis, including basic command line and high performance computing concepts, how to install software, use help, run applications, and advanced command line (shell scripting, pipes, etc.). Also covered will be basic R programming, basic statistical concepts, and model building. There are no prerequisites for this workshop other than an interest in bioinformatics!
 
