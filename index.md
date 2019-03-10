@@ -17,7 +17,8 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Running jobs on the Cluster and using modules](cli/cluster)
 
 
-* [Intro to Sequencing]() (talk)
+[Intro to Sequencing]() (talk)
+
 
 ## Data Reduction
 * [Files and Filetypes for RNA-Seq](data_reduction/filetypes.md)
@@ -26,7 +27,8 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Aligners](data_reduction/alignment.md)
 * [Generating Summarized Counts](data_reduction/counts.md)
 
-* [Experimental Design and Cost Estimation](data_reduction/ExperimentalDesign.pdf) (talk)
+
+[Experimental Design and Cost Estimation](data_reduction/ExperimentalDesign.pdf) (talk)
 
 
 ## Intro to R
@@ -46,7 +48,7 @@ title: March 2019 mRNA-Seq Workshop Home
   * [all files for plots](friday/files_for_plots.zip)
 
 
-* [Closing thoughts](friday/Closing_Thoughts.pdf)
+[Closing thoughts](friday/Closing_Thoughts.pdf)
 
 
 ## Cheat Sheets
