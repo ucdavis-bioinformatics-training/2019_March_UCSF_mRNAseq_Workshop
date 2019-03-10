@@ -10,8 +10,10 @@ This document assumes [preproc htstream](./preproc_htstream.md) has been complet
 
 ## Alignment vs Assembly
 
-Given sequence data, \\
+**Given sequence data**,
+
 _Assembly seeks to put together the puzzle without knowing what the picture is._  
+
 _Mapping tries to put together the puzzle pieces directly onto an image of the picture._
 
 In mapping the question is more, given a small chunk of sequence, where in the genome did this piece most likely come from.
@@ -34,6 +36,7 @@ In RNAseq data, you must also consider effect of splice junctions, reads may spa
 
 <img src="alignment_figures/alignment_figure1.png" alt="alignment_figure1" width="600px"/>
 
+### Aligners
 Many [alignment algorithm](https://en.wikipedia.org/wiki/List_of_sequence_alignment_software
 ) to choose from.
 * Spliced Aligners
@@ -45,6 +48,8 @@ Many [alignment algorithm](https://en.wikipedia.org/wiki/List_of_sequence_alignm
 * Aligners that can ’clip’
   * bwa-mem
   * Bowtie2 in local mode
+
+#### Pseudo-aligners (salmon and kalisto)
 
 ### Mapping against the genome vs transcriptome
 
@@ -64,6 +69,7 @@ Genome sequence fasta files and annotation (gff, gtf) files go together! These s
 * Annotation file should be GTF (preferred), and should be the most comprehensive you can find.
   * Chromosome names in the GTF must match those in the fasta file (they don’t always do).
   * Star recommends the Genecode annotations for mouse/human
+
 
 ## Reference sequence and annotation
 
