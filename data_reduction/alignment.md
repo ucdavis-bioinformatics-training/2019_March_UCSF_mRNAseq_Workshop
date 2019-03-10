@@ -37,7 +37,7 @@ In RNAseq data, you must also consider effect of splice junctions, reads may spa
 <img src="alignment_figures/alignment_figure1.png" alt="alignment_figure1" width="600px"/>
 
 ### Aligners
-Many [alignment algorithm](https://en.wikipedia.org/wiki/List_of_sequence_alignment_software
+Many [alignment algorithms](https://en.wikipedia.org/wiki/List_of_sequence_alignment_software
 ) to choose from.
 * Spliced Aligners
   * STAR
@@ -50,7 +50,7 @@ Many [alignment algorithm](https://en.wikipedia.org/wiki/List_of_sequence_alignm
   * Bowtie2 in local mode
 
 #### Pseudo-aligners (salmon and kalisto)
-* Quasi-mapping 
+* Quasi-mapping
 * Probabilistic
 * Map to transcripts, not genome
 * Does transcript quantifications (or gene)
@@ -155,6 +155,8 @@ We need to first get the url for the genome fasta.
 1. Creates the star index directory [star.overlap100.gencode.v29].
 1. Change directory into the new star index directory. we run the star indexing command from inside the directory, for some reason star fails if you try to run it outside this directory.
 1. Run star in mode genomeGenerate.
+
+> sbatch star_index.slurm
 
 This step will take a couple hours. You can look at the [STAR documentation](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) while you wait. All of the output files will be written to the star_index directory.
 
