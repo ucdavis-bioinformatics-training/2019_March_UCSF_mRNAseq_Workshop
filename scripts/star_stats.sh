@@ -15,5 +15,6 @@ done
 echo -en "\n" >> names.txt
 cat names.txt stats.txt totals.txt > temp1
 mv temp1 summary_alignments.txt
+rm stats.txt
 rm names.txt
 rm totals.txt
