@@ -302,15 +302,8 @@ We can watch the progress of our task array using the 'squeue' command. Takes ab
 **1\.** Once your jobs have finished successfully, use a script of ours, [aln_stats.sh](../scripts/aln_stats.sh) to collect the alignment stats. Don't worry about the script's contents at the moment; you'll use very similar commands to create a counts table in the next section. For now:
 
     cd /share/workshop/$USER/rnaseq_example  # We'll run this from the main directory
-    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/scripts/aln_stats.slurm
-    less star.slurm
-
-When you are done, type "q" to exit.
-
-
-    cd ~/rnaseq_example/02-STAR_alignment/
-    cp /share/biocore/workshops/2018_June_RNAseq/02-STAR_alignment/aln_stats.sh .
-    . aln_stats.sh
+    wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/scripts/star_stats.sh
+    bash aln_stats.sh
 
 The table that this script creates ("stats.txt") can be pulled to your laptop via 'scp', or WinSCP, etc., and imported into a spreadsheet. Are all samples behaving similarly? Discuss ...
 
