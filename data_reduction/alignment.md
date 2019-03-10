@@ -336,4 +336,4 @@ shell script for mapping using bash loop and star.
 
 shell script to produce summary mapping table
 
-[aln_stats.sh](../scripts/star_stats.sh)
+[star_stats.sh](../scripts/star_stats.sh)
