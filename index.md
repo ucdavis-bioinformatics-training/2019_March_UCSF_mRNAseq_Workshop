@@ -17,7 +17,7 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Running jobs on the Cluster and using modules](cli/cluster)
 
 
-[Intro to Sequencing]() (talk)
+[Intro to Sequencing](pdfs/erics_talk.pdf) (talk)  
 [Experimental Design and Cost Estimation](pdfs/ExperimentalDesign.pdf) (talk)
 
 
