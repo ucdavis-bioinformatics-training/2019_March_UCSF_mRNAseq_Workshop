@@ -689,13 +689,13 @@ I've created a small R script to read in each json file, pull out some relevant 
     cat summary_hts.txt
 
 
-**4\.** Transfer summarize_stats.R to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
+**4\.** Transfer summarize_stats.txt to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
 
 In a new shell session on your laptop. **NOT logged into tadpole**.
 
     mkdir ~/rnaseq_workshop
     cd ~/rnaseq_workshop
-    scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/summarize_stats.R .
+    scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/summary_hts.txt .
 
 Open in excel (or excel like application), you may have to move the header column 1 cell to the right, and lets review.
 

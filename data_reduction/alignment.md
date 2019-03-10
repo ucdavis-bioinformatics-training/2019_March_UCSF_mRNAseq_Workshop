@@ -299,13 +299,26 @@ We can watch the progress of our task array using the 'squeue' command. Takes ab
 
 ## Quality Assurance - Mapping statistics as QA/QC.
 
-**1\.** Once your jobs have finished successfully, use a script of ours, [aln_stats.sh](../scripts/aln_stats.sh) to collect the alignment stats. Don't worry about the script's contents at the moment; you'll use very similar commands to create a counts table in the next section. For now:
+**1\.** Once your jobs have finished successfully, use a script of ours, [star_stats.sh](../scripts/star_stats.sh) to collect the alignment stats. Don't worry about the script's contents at the moment; you'll use very similar commands to create a counts table in the next section. For now:
 
     cd /share/workshop/$USER/rnaseq_example  # We'll run this from the main directory
     wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/scripts/star_stats.sh
-    bash aln_stats.sh
+    bash star_stats.sh
 
-The table that this script creates ("stats.txt") can be pulled to your laptop via 'scp', or WinSCP, etc., and imported into a spreadsheet. Are all samples behaving similarly? Discuss ...
+
+**2\.** Transfer summary_alignments.txt to your computer using scp or winSCP, or copy/paste from cat [sometimes doesn't work],  
+
+In a new shell session on your laptop. **NOT logged into tadpole**.
+
+    mkdir ~/rnaseq_workshop
+    cd ~/rnaseq_workshop
+    scp msettles@tadpole.genomecenter.ucdavis.edu:/share/workshop/msettles/rnaseq_example/summary_alignments.txt .
+
+Its ok of the mkdir command fails ("File exists") because we aleady created the directory earlier.
+
+Open in excel (or excel like application), you may have to move the header column 1 cell to the right, and lets review.
+
+The table that this script creates ("alignment_stats.txt") can be pulled to your laptop via 'scp', or WinSCP, etc., and imported into a spreadsheet. Are all samples behaving similarly? Discuss ...
 
 ## Scripts
 
@@ -323,4 +336,4 @@ shell script for mapping using bash loop and star.
 
 shell script to produce summary mapping table
 
-[aln_stats.sh](../scripts/aln_stats.sh)
+[aln_stats.sh](../scripts/star_stats.sh)

@@ -13,6 +13,6 @@ cat samples.txt | while read sample; do
         perl -ne '$tot+=$_ }{ print "$tot\t"' >> totals.txt
 done
 cat names.txt stats.txt totals.txt > temp1
-mv temp1 alignment_stats.txt
+mv temp1 summary_alignments.txt
 rm names.txt
 rm totals.txt
