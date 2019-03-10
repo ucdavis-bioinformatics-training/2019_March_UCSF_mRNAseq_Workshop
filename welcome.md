@@ -1,6 +1,6 @@
 # Quick Introduction to the Workshop and Core
 
-__**The mission of the Bioinformatics Core facility is to facilitate outstanding omics-scale research through these activities:**__
+__The mission of the Bioinformatics Core facility is to facilitate outstanding omics-scale research through these activities:__
 
  <img src="base_figures/welcome_figure1.png" alt="welcome_figure1" width="600px"/>
 
