@@ -44,7 +44,7 @@ The tilde (~) is a short form of a user’s home directory.
 
 ## Logging into a remote server
 
-For this we use the application Secure SHell ... SSH. Replace 'username' with your login name in the following.
+For this we use the application Secure SHell ... SSH. Replace 'username' with your login name in the following and enter your password when prompted. You will not see your password being typed.
 
     ssh username@tadpole.genomecenter.ucdavis.edu
 
@@ -70,20 +70,43 @@ present working directory ... where am I?
 
     ls .  
 
-list files here ... you should see nothing since your 'username' homes are empty
+list files here ... you should see nothing since your homes are empty
 
     ls /tmp/
 
-list files somewhere else
+list files somewhere else, like /tmp/
 
-Let's run our first command ... because one of the first things that's good to know is *how to escape once you've started something you don't want*.
+#### Options
+
+Each command can act as a basic tool, or you can add 'options' or 'flags' that modify the default behavior of the tool. These flags come in the form of '-v' ... or, when it's a more descriptive word, two dashes: '\-\-verbose' ... that's a common (but not universal) one that tells a tool that you want it to give you output with more detail. Sometimes, options require specifying amounts or strings, like '-o results.txt' or '\-\-output results.txt' ... or '-n 4' or '\-\-numCPUs 4'. Let's try some, and see what the man page for the 'list files' command 'ls' is like.
+
+    ls -R /run
+
+Lists directories and files *recursively*. how do I know which options do what?
+
+    man ls
+
+Navigate like in 'less' (up,down,pgup,pgdn,g,G,/pattern,n,N,q), look up and try the following, if you don't say where, it lists files in your current directory
+
+    ls -l
+    ls -a
+    ls -l -a
+    ls -la  # option 'smushing' ... when no values need specifying
+    ls -ltrha
+    ls -ltrha --color  # single letter (smushed) vs word options
+
+Quick aside: what if I want to use same options repeatedly? and be lazy? You can create a shortcut to another command using 'alias'.
+
+    alias ll='ls -lah --color'
+    ll
+
+Because one of the first things that's good to know is *how to escape once you've started something you don't want*.
 
     sleep 1000  # wait for 1000 seconds!
 
 Use Ctrl-c (shows as '^C'in screen) to exit (kill) a command. In some cases, a different key sequence is required (Ctrl-d).
 
-Getting Around
-----------------
+## Getting Around
 
 The filesystem you're working on is like the branching root system of a tree. The top level, right at the root of the tree, is called the 'root' directory, specified by '/' ... which is the divider for directory addresses, or 'paths'. We move around using the 'change directory' command, 'cd'. The command pwd return the present working directory.
 
@@ -151,8 +174,7 @@ tab with no enter completes up to 'se' since that's in common between seven and 
 
 I can't overstate how useful tab completion is. You should get used to using it constantly. Watch experienced users type and they maniacally hit tab once or twice in between almost every character. You don't have to go that far, of course, but get used to constantly getting feedback from hitting tab and you will save yourself a huge amount of typing and trying to remember weird directory and filenames.
 
-CHALLENGE
------------
+#### CHALLENGE
 
 After returning to your home directory (just enter 'cd' by itself), verify that the two following commands are equivalent (replacing 'username' with your actual username):
 
@@ -200,32 +222,6 @@ So, 'mkdir' and 'rmdir' are used to create and destroy (empty) directories. 'rm'
     ls -ltra  # same time?
 
 So 'touch' creates empty files, or updates the 'last modified' time. Note that the options on the 'ls' command you used here give you a Long listing, of All files, in Reverse Time order (l, a, r, t).
-
-
-## Options
-
-One reason you'll appreciate 'less' is that it's the default paginator for the 'man' command. 'man' stands for 'manual', and it's the main way to get more detail on any of the commands we'll introduce today. Each command can act as a basic tool, or you can add 'options' or 'flags' that modify the default behavior of the tool. These flags come in the form of '-v' ... or, when it's a more descriptive word, two dashes: '\-\-verbose' ... that's a common (but not universal) one that tells a tool that you want it to give you output with more detail. Sometimes, options require specifying amounts or strings, like '-o results.txt' or '\-\-output results.txt' ... or '-n 4' or '\-\-numCPUs 4'. Let's try some, and see what the man page for the 'list files' command 'ls' is like.
-
-    ls -R /software
-    # ack! too much going to the screen!
-    <ctrl-c>
-    ls -R /software/scythe  # lists directories and files *recursively*
-    # how do I know which options do what?
-    man ls
-    # navigate like in 'less' (up,down,pgup,pgdn,g,G,/pattern,n,N,q)
-    # look up and try the following:
-    ls -l  # if you don't say where, it lists files in your current directory
-    ls -a
-    ls -l -a
-    ls -la  # option 'smushing' ... when no values need specifying
-    ls -ltrha
-    ls -ltrha --color  # single letter (smushed) vs word options
-    # Quick aside: what if I want to use same options repeatedly? and be lazy?
-    alias  # lists current *command aliases* or *shortcuts*
-    alias ll='ls -ltrhaF --color'
-    ll
-    alias l='ls --color'
-    l
 
 ## Piping and Redirection
 
@@ -335,8 +331,7 @@ However, some commands try to be 'smarter' about this behavior, so it's a little
     newVRBL=`echo $VRBL`
     echo $newVRBL
 
-Manipulation of a FASTA File
------------------------------
+## Manipulation of a FASTA File
 
 We just found the phiX-174 genome, so let's copy it to our current directory so we can play with it:
 
@@ -499,8 +494,7 @@ The 'top' command prints a self-updating table of running processes and system s
 
 <img src="figures/cli_figure6.png" alt="cli_figure6" width="600px"/>
 
-Shell Scripts, File Permissions
---------------------------------
+## Shell Scripts, File Permissions
 
 Often it's useful to define a whole string of commands to run on some input, so that (1) you can be sure you're running the same commands on all data, and (2) so you don't have to type the same commands in over and over! Let's use the 'nano' text editor program that's pretty reliably installed on most linux systems.
 

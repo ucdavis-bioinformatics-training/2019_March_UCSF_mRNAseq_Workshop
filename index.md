@@ -10,7 +10,7 @@ title: March 2019 mRNA-Seq Workshop Home
 
 ## Introductory Command line and cluster
 * [Logging In and transferring files](cli/logging-in.md)
-* [Intro to command-line](cli/)
+* [Intro to command-line](cli/command-line-intro.md)
 * [Running jobs on the Cluster and using modules](cli/cluster.md)
 
 
