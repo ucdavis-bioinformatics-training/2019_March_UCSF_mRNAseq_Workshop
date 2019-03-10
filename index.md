@@ -18,6 +18,7 @@ title: March 2019 mRNA-Seq Workshop Home
 
 
 [Intro to Sequencing]() (talk)
+[Experimental Design and Cost Estimation](pdfs/ExperimentalDesign.pdf) (talk)
 
 
 ## Data Reduction
@@ -26,10 +27,6 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Preprocessing Data](data_reduction/preproc_htstream.md)
 * [Aligners](data_reduction/alignment.md)
 * [Generating Summarized Counts](data_reduction/counts.md)
-
-
-[Experimental Design and Cost Estimation](data_reduction/ExperimentalDesign.pdf) (talk)
-
 
 ## Intro to R
 * [Intro to R](Intro2R/Intro2R.html)
