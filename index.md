@@ -4,9 +4,6 @@ title: March 2019 mRNA-Seq Workshop Home
 
 #### UC Davis Genome Center [*Bioinformatics Core*](http://bioinformatics.ucdavis.edu/)
 
-## Cheat Sheets
-[Cheat Sheets](cheatSheetIndex.md)
-
 [Welcome](pdfs/Introduction.pdf)
 
 [What is Bioinformatics](pdfs/What_is_Bioinformatics.pdf)
@@ -31,6 +28,7 @@ title: March 2019 mRNA-Seq Workshop Home
 
 * [Experimental Design and Cost Estimation](data_reduction/ExperimentalDesign.pdf) (talk)
 
+
 ## Intro to R
 * [Intro to R](Intro2R/Intro2R.html)
 
@@ -47,8 +45,12 @@ title: March 2019 mRNA-Seq Workshop Home
   * [all_counts.txt](friday/all_counts.txt)
   * [all files for plots](friday/files_for_plots.zip)
 
+
 * [Closing thoughts](friday/Closing_Thoughts.pdf)
 
-Lunch and Learns
-========
-Lexogen, Qiagen, Illumina, 10X
+
+## Cheat Sheets
+[Cheat Sheets](cheatSheetIndex.md)
+
+## Lunch and Learns
+[Lexogen](https://www.lexogen.com/), [Qiagen](https://www.qiagen.com/us/), [Illumina](https://www.illumina.com/), [10X Genomics](https://www.10xgenomics.com/)
