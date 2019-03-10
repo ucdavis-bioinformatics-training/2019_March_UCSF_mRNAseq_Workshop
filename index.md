@@ -9,11 +9,8 @@ title: March 2019 mRNA-Seq Workshop Home
 [What is Bioinformatics](pdfs/Genomics_a_perspective_March2019.pdf)
 
 ## Introductory Command line and cluster
-* [Logging In and transferring files](cli/logging-in)
-* [Intro to command-line](cli/Intro2CLI.pdf) (talk)
-* [Intro to command-line walk-through](cli/Intro2CLI)
-* [Intro to command-line files](https://github.com/ucdavis-bioinformatics-training/2018-June-RNA-Seq-Workshop/tree/master/cli/Intro2CLI-files)
-* [Advanced command-line](cli/advanced-command-line)
+* [Logging In and transferring files](cli/logging-in.md)
+* [Intro to command-line](cli/)
 * [Running jobs on the Cluster and using modules](cli/cluster.md)
 
 
@@ -28,6 +25,7 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Aligners](data_reduction/alignment.md)
 * [Generating Summarized Counts](data_reduction/counts.md)
 
+<--
 ## Intro to R
 * [Intro to R](Intro2R/Intro2R.html)
 
@@ -43,7 +41,7 @@ title: March 2019 mRNA-Seq Workshop Home
   * [metafile](friday/metafile.txt)
   * [all_counts.txt](friday/all_counts.txt)
   * [all files for plots](friday/files_for_plots.zip)
-
+-->
 
 [Closing thoughts](closing.md)
 
