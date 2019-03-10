@@ -14,7 +14,7 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Intro to command-line walk-through](cli/Intro2CLI)
 * [Intro to command-line files](https://github.com/ucdavis-bioinformatics-training/2018-June-RNA-Seq-Workshop/tree/master/cli/Intro2CLI-files)
 * [Advanced command-line](cli/advanced-command-line)
-* [Running jobs on the Cluster and using modules](cli/cluster)
+* [Running jobs on the Cluster and using modules](cli/cluster.md)
 
 
 [Intro to Sequencing](pdfs/erics_talk.pdf) (talk)  
