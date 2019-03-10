@@ -4,7 +4,7 @@ title: March 2019 mRNA-Seq Workshop Home
 
 #### UC Davis Genome Center [*Bioinformatics Core*](http://bioinformatics.ucdavis.edu/)
 
-[Welcome](pdfs/Introduction.pdf)
+[Welcome](welcome.md)
 
 [What is Bioinformatics](pdfs/What_is_Bioinformatics.pdf)
 
