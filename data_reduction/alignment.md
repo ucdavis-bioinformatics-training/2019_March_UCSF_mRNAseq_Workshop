@@ -76,8 +76,41 @@ Genome sequence fasta files and annotation (gff, gtf) files go together! These s
   * Chromosome names in the GTF must match those in the fasta file (they don’t always do).
   * Star recommends the Genecode annotations for mouse/human
 
+## Counting reads as a proxy for gene expression
 
-## Reference sequence and annotation
+The more you can count (and HTS sequencing systems can count a lot) the better the measure of copy number for even rare transcripts in a population.
+* Most RNA-seq techniques deal with count data. Reads are mapped to a reference genome, transcripts are detected, and the number of reads that map to a transcript (or gene) are counted.
+* Read counts for a transcript are roughly proportional to the gene’s length and transcript abundance (in whole transcript methods).
+
+Technical artifacts should be considered during counting
+* Mapping quality
+* Map-ability (uniqueness), the read is not ambiguous
+
+Options are (STAR, HTSEQ, featureCounts)
+
+### The HTSEQ way
+**Problem:**
+* Given a sam/bam file with aligned sequence reads and a list of genomic feature (genes locations), we wish to count the number of reads (fragments) than overlap each feature.
+  * Features are defined by intervals, they have a start and stop position on a chromosome.
+  * For this workshop and analysis, features are genes which are the union of all its exons. You could consider each exon as a feature, for alternative splicing.
+* Htseq-count has three overlapping modes
+  * union
+  * intersection-strict
+  * intersection-nonempty
+
+  <img src="alignment_figures/alignment_figure2.png" alt="alignment_figure2" width="500px"/>
+
+#### Star Implementation
+Counts coincide with Htseq-counts under default parameters (union and tests all orientations). Need to specify GTF file at genome generation step or during mapping.
+* Output, 4 columns
+  * GeneID
+  * Counts for unstranded
+  * Counts for first read strand
+  * Counts for second read strand
+
+Choose the appropriate column given the library preparation characteristics and generate a matrix table, columns are samples, rows are genes.
+
+## Indexing a Reference sequence and annotation
 
 **1\.** First lets make sure we are where we are supposed to be and that the References directory is available.
 
@@ -156,11 +189,9 @@ We need to first get the url for the genome fasta.
 1. Change directory into the new star index directory. we run the star indexing command from inside the directory, for some reason star fails if you try to run it outside this directory.
 1. Run star in mode genomeGenerate.
 
-> sbatch star_index.slurm
+  sbatch star_index.slurm
 
 This step will take a couple hours. You can look at the [STAR documentation](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) while you wait. All of the output files will be written to the star_index directory.
-
-Takes about 2:00 to run.
 
 **IF** for some reason it didn't finish, is corrupted, or you missed the session, you can copy over a completed copy.
 
