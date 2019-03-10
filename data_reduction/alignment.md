@@ -121,11 +121,11 @@ applications (like RNA-Seq ... would “cancel” out anyway).
 * Duplicates:
   * Reads or read pairs arising from the same original library fragment, either during library preparation (PCR duplicates).
   * Generally, duplicates can only be detected reliably with paired-end sequencing. If PE, they’re discounted in variant detection, and discounted in counting applications (like RNA-Seq).
-* Clipping vs Splicing
-<img src="alignment_figures/alignment_figure3.png" alt="alignment_figure3" width="300px"/>
-* Inner length, insert size, fragment length
-<img src="alignment_figures/alignment_figure4.png" alt="alignment_figure4" width="300px"/>
-* from https://www.biostars.org/p/106291/
+* Clipping vs Splicing  
+<img src="alignment_figures/alignment_figure3.png" alt="alignment_figure3" width="400px"/>  
+* Inner length, insert size, fragment length  
+<img src="alignment_figures/alignment_figure4.jpg" alt="alignment_figure4" width="400px"/>  
+\*From https://www.biostars.org/p/106291/
 
 ## Indexing a Reference sequence and annotation
 
