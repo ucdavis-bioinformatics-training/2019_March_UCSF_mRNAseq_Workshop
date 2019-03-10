@@ -114,7 +114,7 @@ Choose the appropriate column given the library preparation characteristics and 
 ### Alignment concepts
 
 * Multimappers:
-  *  Reads that align equally well to more than one reference location.
+  * Reads that align equally well to more than one reference location.
   * Generally, multimappers are discounted in variant detection, and are often discounted in counting
 applications (like RNA-Seq ... would “cancel” out anyway).
   * Note: multimapper “rescue” in some algorithms (RSEM, Express?).
