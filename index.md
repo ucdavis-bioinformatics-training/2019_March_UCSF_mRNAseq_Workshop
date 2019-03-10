@@ -6,7 +6,7 @@ title: March 2019 mRNA-Seq Workshop Home
 
 [Welcome](welcome.md)
 
-[What is Bioinformatics](pdfs/What_is_Bioinformatics.pdf)
+[What is Bioinformatics](pdfs/Genomics_a_perspective_March2019.pdf)
 
 ## Introductory Command line and cluster
 * [Logging In and transferring files](cli/logging-in)
@@ -48,7 +48,7 @@ title: March 2019 mRNA-Seq Workshop Home
   * [all files for plots](friday/files_for_plots.zip)
 
 
-[Closing thoughts](friday/Closing_Thoughts.pdf)
+[Closing thoughts](closing.md)
 
 
 ## Cheat Sheets
