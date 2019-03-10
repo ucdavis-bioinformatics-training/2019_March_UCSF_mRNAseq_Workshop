@@ -99,6 +99,7 @@ Options are (STAR, HTSEQ, featureCounts)
   * intersection-nonempty
 
   <img src="alignment_figures/alignment_figure2.png" alt="alignment_figure2" width="500px"/>
+* from the htseq paper
 
 #### Star Implementation
 Counts coincide with Htseq-counts under default parameters (union and tests all orientations). Need to specify GTF file at genome generation step or during mapping.
@@ -109,6 +110,22 @@ Counts coincide with Htseq-counts under default parameters (union and tests all 
   * Counts for second read strand
 
 Choose the appropriate column given the library preparation characteristics and generate a matrix table, columns are samples, rows are genes.
+
+### Alignment concepts
+
+* Multimappers:
+  *  Reads that align equally well to more than one reference location.
+  * Generally, multimappers are discounted in variant detection, and are often discounted in counting
+applications (like RNA-Seq ... would “cancel” out anyway).
+  * Note: multimapper “rescue” in some algorithms (RSEM, Express?).
+* Duplicates:
+  * Reads or read pairs arising from the same original library fragment, either during library preparation (PCR duplicates).
+  * Generally, duplicates can only be detected reliably with paired-end sequencing. If PE, they’re discounted in variant detection, and discounted in counting applications (like RNA-Seq).
+* Clipping vs Splicing
+<img src="alignment_figures/alignment_figure3.png" alt="alignment_figure3" width="300px"/>
+* Inner length, insert size, fragment length
+<img src="alignment_figures/alignment_figure4.png" alt="alignment_figure4" width="300px"/>
+* from https://www.biostars.org/p/106291/
 
 ## Indexing a Reference sequence and annotation
 
