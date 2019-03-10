@@ -149,7 +149,8 @@ drwxrwsr-x 5 msettles workshop    6 Mar  9 10:42 ..
 -rw-rw-r-- 1 msettles workshop 6.8M Mar  9 10:46 SampleAC1.stats_R1.fastq.gz
 -rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:46 SampleAC1.stats_R2.fastq.gz
 -rw-rw-r-- 1 msettles workshop 6.8M Mar  9 10:42 SampleAC1.subset_R1.fastq.gz
--rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:42 SampleAC1.subset_R2.fastq.gz```
+-rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:42 SampleAC1.subset_R2.fastq.gz
+```
 
 *Which files were generated from hts\_Stats?*
 
