@@ -139,10 +139,9 @@ To view the same information for all jobs of a user (replace username with your 
 
 <img src="figures/modules_figure1.png" alt="modules_figure1" width="600px"/>
 
-This is a list of all the software (with different versions) that you can access. The format of 'modules' is software/version here you can see htstream has 3 different
-versions installed with the latest being 1.0.0
+This is a list of all the software (with different versions) that you can access. The format of 'modules' is software/version here you can see htstream has 3 different versions installed with the latest being 1.0.0. When you load a module without specifying a version, it will load the default (generally the latest) version. If you need an older version, you need to use the cooresponding version number:
 
-Now try running the 'hts_stats' app from htsteam:
+Now try running the 'hts_Stats' app from htstream:
 
     hts_Stats
 
@@ -158,49 +157,69 @@ You should get an error saying that the command was not found. Take a look at yo
 ```
 msettles@tadpole:/share/workshop/msettles/cli$ echo $PATH
 /software/slurm/17.11.2/lssc0-linux/sbin:/software/slurm/17.11.2/lssc0-linux/bin:/software/modules/1.923/lssc0-linux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/puppetlabs/bin
-msettles@tadpole:/share/workshop/msettles/cli$
 ```
-These are the directories (colon separated) that are searched for anything you run on the command-line. In order to access a piece of software that is not in one of these default directories, we need to use the 'module load' command:
+These are the directories (colon separated) that are searched for executable applications to run on the command-line. In order to access a piece of software that is not in one of these default directories, we need to use the 'module load' command, or set the PATH to locate it:
 
-    module load scythe
-    scythe --help
+    module load htstream/1.0.0
+    hts_Stats
 
-Use the 'which' command to find out where the 'scythe' command is actually located:
+Use the 'which' command to find out where the 'hts_Stats' command is actually located:
 
-    which scythe
+    which hts_Stats
 
-You'll see that scythe is located in a completely different place and yet you are able to access it. This is because the module command changes your PATH variable so that it has the correct directory. Take a look at your PATH again:
+You'll see that hts_Stats is located in a completely different place and yet you are able to access it. This is because the module command changes your PATH variable so that it has the correct directory. Take a look at your PATH again:
 
     echo $PATH
 
 You'll see that the directory for scythe has been added to PATH.
 
 ---
+**2\.** A few more module sub-commands that are useful:
 
-**6\.** You can also load older versions of software. When you load a module without specifying a version, it will load the default (generally the latest) version. If you need an older version, you need to add the version number:
+'module list' will list all of your currently loaded modules in this terminal/session.
 
-    module load bwa/0.6.2
+    module list
 
----
+```
+msettles@tadpole:/share/workshop/msettles/cli$ module list
+Currently Loaded Modulefiles:
+ 1) slurm/latest   2) htstream/1.0.0
+```
+'module unload' will unload the module(s) you specify.
 
-**7\.** A few more module sub-commands that are useful:
+    module load star
+    module load samtools
+    module list
+    module unload star
+    module list
 
-    module purge
+```
+msettles@tadpole:/share/workshop/msettles/cli$ module load star
+Module star-2.7.0e-lssc0-linux loaded. STAR (Spliced Transcripts Alignment to a Reference) is an RNA-seq data aligner. NOTE: Indices must be indexed using this version or newer, they cannot be from a previous version.
+msettles@tadpole:/share/workshop/msettles/cli$ module load samtools
+Module samtools-1.9-lssc0-linux loaded. Samtools is a suite of programs for interacting with high-throughput sequencing data.
+msettles@tadpole:/share/workshop/msettles/cli$ module list
+Currently Loaded Modulefiles:
+ 1) slurm/latest   2) htstream/1.0.0   3) star/2.7.0e   4) samtools/1.9
+msettles@tadpole:/share/workshop/msettles/cli$ module unload star
+msettles@tadpole:/share/workshop/msettles/cli$ module list
+Currently Loaded Modulefiles:
+ 1) slurm/latest   2) htstream/1.0.0   3) samtools/1.9
+```
 
 'module purge' will unload all of your modules. Which simply means that it will take out the directories for all of the modules from your PATH variable. Take a look at $PATH now:
 
     echo $PATH
-
-The scythe and bwa directories are gone.
-
-    module load scythe
-    module rm scythe
-
-'module rm' will unload the one module you specify.
-
-    module load scythe
-    module load sickle
-    module load bwa
+    module purge
     module list
+    echo $PATH
 
-Finally, 'module list' will list all of your currently loaded modules in this terminal/session.
+```
+msettles@tadpole:/share/workshop/msettles/cli$     echo $PATH
+/software/samtools/1.9/lssc0-linux/bin:/software/htstream/1.0.0/lssc0-linux/bin:/share/biocore/software/bin:/software/modules/1.923/lssc0-linux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/puppetlabs/bin
+msettles@tadpole:/share/workshop/msettles/cli$     module purge
+msettles@tadpole:/share/workshop/msettles/cli$     module list
+No Modulefiles Currently Loaded.
+msettles@tadpole:/share/workshop/msettles/cli$     echo $PATH
+/share/biocore/software/bin:/software/modules/1.923/lssc0-linux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/puppetlabs/bin
+```
