@@ -6,7 +6,16 @@ output:
       keep_md: TRUE
 ---
 
-# Differential Expression Analysis with Limma-Voom
+# Differential Expression Analysis
+
+* Differential Expression between conditions is determined from count data, which is modeled by a distribution (ie. Negative Binomial Distribution, Poisson, etc.) 
+* Generally speaking differential expression analysis is performed in a very similar manner to DNA microarrays, once normalization and transformations have been performed. 
+A lot of RNA-seq analysis has been done in R and so there are many packages available to analyze and view this data. Two of the best are: 
+* DESeq, developed by Simon Anders (also created htseq) in Wolfgang Huber’s group at EMBL
+* edgeR and Voom (extension to Limma [microarrays] for RNA-seq), developed out of Gordon Smyth’s group from the Walter and Eliza Hall Institute of Medical Research in Australia
+http://bioconductor.org/packages/release/BiocViews.html#___RNASeq
+
+## Differential Expression Analysis with Limma-Voom
 
 limma is an R package that was originally developed for differential expression (DE) analysis of gene expression microarray data.
 
@@ -19,6 +28,18 @@ Together they allow fast, flexible, and powerful analyses of RNA-Seq data.  Limm
 * Based on simulation studies, maintains the false discovery rate at or below the nominal rate, unlike some other packages
 
 * Empirical Bayes smoothing of gene-wise standard deviations provides increased power.  
+
+### Basic Steps
+1. Read count data into R
+2. Filter genes (uninteresting genes, e.g. unexpressed)
+3. Calculate normalizing factors (sample-specific adjustments)
+4. Calculate dispersion (gene-gene variance-stabilizing transformation)
+5. Fit a statistical model to you experiment
+6. Perform likely ratio tests on comparisons of interest (using contrasts)
+7. Adjust for multiple testing, Benjamini-Hochberg (BH) or q-value
+8. Check results for confidence
+9. Attach annotation if available and write tables
+10. Plotting routines.
 
 
 ```r
@@ -150,7 +171,15 @@ Note: you can also enter group information manually, or read it in from an exter
 
 **2\.** Preprocessing
 
-Calculate normalization factors to scale the raw library sizes (number of reads). By default we use method="TMM" which is the weighted trimmed mean of M-values (to the reference) proposed by Robinson and Oshlack (2010).
+In differential expression analysis, only sample-specific effects need to be normalized, NOT concerned with comparisons and quantification of absolute expression.
+* Sequence depth – is a sample specific effect and needs to be adjusted for.
+* RNA composition - finding a set of scaling factors for the library sizes that minimize the log-fold changes between the samples for most genes (uses a trimmed mean of M-values between each pair of sample)
+* GC content – is NOT sample-specific (except when it is)
+* Gene Length – is NOT sample-specific (except when it is)
+
+Normalization in edgeR/voom is model-based, you calculate normalization factors to scale the raw library sizes (number of reads) using the function calcNormFactors, which by default uses TMM (weighted trimmed means of M values to the reference). Assumes most genes are not DE.
+
+Proposed by Robinson and Oshlack (2010).
 
 
 ```r
@@ -180,7 +209,15 @@ d0$samples
 
 Note: calcNormFactors doesn't _normalize_ the data, it just calculates normalization factors for use downstream.
 
-Filter low-expressed genes, remove any row (gene) whose max value (for the row) is less tha cutoff (1).
+#### Filtering
+
+Common filgter is to remove genes with a max value (X) of less then Y.
+
+Another Common filter is to remove genes that are less than X normalized read counts (cpm) across a certain number of samples. Ex: rowSums(cpms <=1) < 3 , require at least 1 cpm in at least 3 samples to keep.
+
+A less used filter is for genes with minimum variance across all samples, so if a gene isn’t changing (constant expression) its inherently not interesting therefor no need to test
+
+Filter low-expressed genes, remove any row (gene) whose max value (for the row) is less tha cutoff (3).
 
 ```r
 cutoff <- 3
@@ -314,6 +351,10 @@ Estimate contrast for each gene
 tmp <- contrasts.fit(fit, contr)
 ```
 
+The variance characteristics of low expressed genes are different from high expressed genes, if treated the same, the effect is to over represent low expressed genes in the DE list.
+
+<img src="de_figures/de_figure1.png" alt="de_figure1" width="600px"/>
+
 Empirical Bayes smoothing of standard errors (shrinks standard errors that are much larger or smaller than those from other genes towards the average standard error) (see https://www.degruyter.com/doi/10.2202/1544-6115.1027)
 
 
@@ -410,6 +451,18 @@ length(which(top.table$adj.P.Val < 0.05))
 ```
 ## [1] 10
 ```
+### Multiple Testing Correction
+
+* Simply a must! Best choices are:
+  * FDR (false discovery rate), such as BH.
+  * Qvalue
+
+* The FDR (or qvalue) is a statement about the list and is no longer about the gene (pvalue). So a FDR of 0.05, says you expect 5% false positives in the list of genes with an FDR of 0.05 or less.
+
+* The statement “Statistically significant” means FDR of 0.05 or less.
+My opinion is these genes do not require further validation (e.g. with qrtPCR)
+You can dip below the FDR of 0.05, but in my opinion you then need to validate those genes (e.g. with qrtPCR)
+
 
 Write top.table to a file 
 
@@ -1061,6 +1114,12 @@ top.table <- topTable(fit2, coef = 1, sort.by = "P", n = 40)
 
 **1\.** Extracting "normalized" expression table
 
+### RPKM vs. FPKM vs. CPM and Model Based
+* RPKM - Reads per kilobase per million mapped reads 
+* FPKM - Fragments per kilobase per million mapped reads
+* logCPM – log Counts per million [ good for producing MDS plots, estimate of normalized values in model based ]
+* Model based - original read counts are not themselves transformed, but rather correction factors are used in the DE model itself.
+
 We use the cpm function with log=TRUE to approximate normalized expression data.
 
 ```r
@@ -1096,11 +1155,11 @@ vennDiagram(results)
 
 ![](orig_DE_Analysis_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
 
-## Generally speaking Limma has a fantastic user manual.
+## Both edgeR and limma voom have VERY comprehensive user manuals
 
-I suggest you spend time looking through it.
+* [Limma voom](https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf)
 
-[limma](https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf)
+* [edgeR](http://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)
 
 
 ```r
