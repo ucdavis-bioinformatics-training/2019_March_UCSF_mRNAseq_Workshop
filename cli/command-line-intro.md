@@ -353,29 +353,29 @@ Only one FASTA sequence entry, since only one header line ('>gi|somethingsomethi
 
 This may not be useful for anything larger than a virus! Let's look at start codon and 2 following:
 
-    grep "ATG......" phix.fa
+    grep --color "ATG......" phix.fa
 
 '.' characters are the single-character wildcards for grep
 
-Use the '-o' option to **o*nly print the pattern matches, one per line
+Use the --color  '-o' option to **o*nly print the pattern matches, one per line
 
     grep -o "ATG......" phix.fa
 
 Use the 'cut' command with '-c' to select characters 4-6, the second codon
 
-    grep -o "ATG......" phix.fa | cut -c4-6
+    grep --color  -o "ATG......" phix.fa | cut -c4-6
 
 'sort' the second codon sequences (default order is same as ASCII table; see 'man ascii')
 
-    grep -o "ATG......" phix.fa | cut -c4-6 | sort
+    grep --color  -o "ATG......" phix.fa | cut -c4-6 | sort
 
 Combine successive identical sequences, but count them ('-c' option)
 
-    grep -o "ATG......" phix.fa | cut -c4-6 | sort | uniq -c
+    grep --color  -o "ATG......" phix.fa | cut -c4-6 | sort | uniq -c
 
 Finally sort using only the 1st 'field' as a key ('-k1,1'), in reverse numeric order ('-rn')
 
-    grep -o "ATG......" phix.fa | cut -c4-6 | sort | uniq -c | sort -rn -k1,1
+    grep --color  -o "ATG......" phix.fa | cut -c4-6 | sort | uniq -c | sort -rn -k1,1
 
 ... which gives us the most common codons first
 
