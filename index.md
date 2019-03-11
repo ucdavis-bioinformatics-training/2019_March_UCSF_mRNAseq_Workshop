@@ -33,7 +33,7 @@ title: March 2019 mRNA-Seq Workshop Home
 
 ## Differential Expression and Pathway Analysis
 * [Prepare Differential Expression Analysis](differential_expression/de_analysis_prepare.md)
-* [Differential Expression Analysis](differential_expression/orig_de_analysis.md)
+* [Differential Expression Analysis](differential_expression/orig_DE_analysis.md)
 
 <!--
 
