@@ -31,8 +31,11 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Prepare Data in R](intro2R/data_in_R_prepare.md)
 * [Data in R](intro2R/orig_data_in_R.md)
 
-<!--
 ## Differential Expression and Pathway Analysis
+* [Prepare Differential Expression Analysis](differential_expression/de_analysis_prepare.md)
+
+<!--
+
 * [DE Analysis: counts to lists of DE genes](thursday/DE.html)
   * [The R Markdown file](thursday/DE.Rmd)
 * [Gene Ontology and KEGG Pathway Enrichment Analyses](friday/enrichment.html)

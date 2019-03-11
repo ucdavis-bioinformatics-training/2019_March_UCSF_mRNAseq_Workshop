@@ -37,7 +37,7 @@ library(edgeR)
 In the R console run the following command
 
 ```r
-download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/differential_expression/DE_Analysis.Rmd", "DE_Analysis.Rmd.Rmd")
+download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/differential_expression/DE_Analysis.Rmd", "DE_Analysis.Rmd")
 ```
 
 ### Download the data file for the workshop document and preview/open it
