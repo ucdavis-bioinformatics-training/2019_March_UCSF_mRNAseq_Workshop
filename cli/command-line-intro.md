@@ -193,7 +193,7 @@ We already learned one command that will create a file, touch. Lets create a fol
     cd /share/workshop/$USER
     mkdir tmp
     cd tmp
-    echo 'Hello, world!' > first.text
+    echo 'Hello, world!' > first.txt
 
 echo text then redirect ('>') to a file.
 
