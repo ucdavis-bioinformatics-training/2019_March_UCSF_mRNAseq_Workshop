@@ -86,9 +86,11 @@ dir()
 ##  [7] "data_in_R.Rmd"          "Intro2R_figures"       
 ##  [9] "Intro2R_files"          "Intro2R.html"          
 ## [11] "Intro2R.md"             "Intro2R.Rmd"           
-## [13] "orig_data_in_R.html"    "orig_data_in_R.md"     
-## [15] "orig_data_in_R.Rmd"     "output.txt"            
-## [17] "RStudio_figures"        "RStudio.md"
+## [13] "multi_plot.pdf"         "multi_plot.png"        
+## [15] "orig_data_in_R_files"   "orig_data_in_R.html"   
+## [17] "orig_data_in_R.md"      "orig_data_in_R.Rmd"    
+## [19] "output.txt"             "RStudio_figures"       
+## [21] "RStudio.md"
 ```
 
 ```r
@@ -720,10 +722,10 @@ The gridExtra package is great for plotting multiple object in one plot.
 
 
 ```r
-include_graphics("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2018-September-Bioinformatics-Prerequisites/master/thursday/Data_in_R/grid_plot.png")
+include_graphics("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/intro2R/Data_in_R_figures/grid_plot.png")
 ```
 
-![](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2018-September-Bioinformatics-Prerequisites/master/thursday/Data_in_R/grid_plot.png)<!-- -->
+![](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2019_March_UCSF_mRNAseq_Workshop/master/intro2R/Data_in_R_figures/grid_plot.png)<!-- -->
 
 
 ```r
