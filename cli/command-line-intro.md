@@ -399,8 +399,8 @@ Programs can write to two separate output streams, 'standard out' (STDOUT), and 
 
     wc -c genome.fa 1> chars.txt 2> any.err
 
-the 1st output, STDOUT, goes to 'aln.sam'
-the 2nd output, STDERR, goes to 'aln.err'
+the 1st output, STDOUT, goes to 'chars.txt'  
+the 2nd output, STDERR, goes to 'any.err'  
 
     cat chars.txt
 
