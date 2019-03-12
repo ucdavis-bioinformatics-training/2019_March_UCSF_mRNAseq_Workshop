@@ -411,7 +411,6 @@ echo $runtime
 
 After looking at the script, lets run it.
 
-    mkdir slurmout
     sbatch star.slurm  # moment of truth!
 
 We can watch the progress of our task array using the 'squeue' command. Takes about 30 minutes to process each sample.
