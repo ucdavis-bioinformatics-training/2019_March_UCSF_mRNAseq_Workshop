@@ -169,6 +169,7 @@ We need to first get the url for the genome fasta.
  echo $HOSTNAME
 
  outpath="References"
+ [[ -d ${outpath} ]] || mkdir ${outpath}
 
  cd ${outpath}
  wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/GRCh38.primary_assembly.genome.fa.gz
@@ -206,7 +207,7 @@ We need to first get the url for the genome fasta.
 1. Change directory into the new star index directory. we run the star indexing command from inside the directory, for some reason star fails if you try to run it outside this directory.
 1. Run star in mode genomeGenerate.
 
-  sbatch star_index.slurm
+    sbatch star_index.slurm
 
 This step will take a couple hours. You can look at the [STAR documentation](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) while you wait. All of the output files will be written to the star_index directory.
 
