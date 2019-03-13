@@ -24,7 +24,6 @@ This directory now contains a folder for each sample and the fastq files for eac
     cat ../samples.txt
 
 ---
-
 **3a\.** Now, take a look at the raw data directory.
 
     ls /share/workshop/$USER/rnaseq_example/00-RawData

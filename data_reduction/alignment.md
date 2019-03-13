@@ -227,13 +227,13 @@ and let's run STAR (via srun) on the pair of streamed test files we created earl
 
 Once you've been given an interactive session we can run STAR. You can ignore the two warnings/errors and you know your on a cluster node because your server will change. Here you see I'm on tadpole, then after the srun command is successful, I am now on drove-13.
 
-```
-msettles@tadpole:/share/workshop/msettles/rnaseq_example/> HTS_testing$     srun --time=15:00:00 -n 8 --mem=32g --> > reservation=workshop --account=workshop --pty /bin/bash
-srun: job 29372920 queued and waiting for resources
-srun: job 29372920 has been allocated resources
-groups: cannot find name for group ID 2020
-bash: /home/msettles/.bashrc: Permission denied
-msettles@drove-13:/share/workshop/msettles/rnaseq_example/> HTS_testing$
+```bash
+# msettles@tadpole:/share/workshop/msettles/rnaseq_example/> HTS_testing$     srun --time=15:00:00 -n 8 --mem=32g --> > reservation=workshop --account=workshop --pty /bin/bash
+# srun: job 29372920 queued and waiting for resources
+# srun: job 29372920 has been allocated resources
+# groups: cannot find name for group ID 2020
+# bash: /home/msettles/.bashrc: Permission denied
+# msettles@drove-13:/share/workshop/msettles/rnaseq_example/> HTS_testing$
 ```
 
 Then run the star commands
@@ -252,10 +252,10 @@ In the command, we are telling star to count reads on a gene level ('--quantMode
 
 Once finished please 'exit' the srun session. You'll know you were successful when your back on tadpole
 
-```
-msettles@drove-13:/share/workshop/msettles/rnaseq_example/HTS_testing$ exit
-exit
-msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$
+```bash
+# msettles@drove-13:/share/workshop/msettles/rnaseq_example/HTS_testing$ exit
+# exit
+# msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$
 ```
 
 ##  Now let's take a look at an alignment in IGV.
