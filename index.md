@@ -32,8 +32,8 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Data in R](intro2R/orig_data_in_R.md)
 
 ## Differential Expression and Pathway Analysis
-* [Get Gene Annotation](differential_expression/annotation.md)
 * [Prepare Differential Expression Analysis](differential_expression/de_analysis_prepare.md)
+* [Get Gene Annotation](differential_expression/annotation.md)
 * [Differential Expression Analysis](differential_expression/orig_DE_Analysis.md)
 
 <!--

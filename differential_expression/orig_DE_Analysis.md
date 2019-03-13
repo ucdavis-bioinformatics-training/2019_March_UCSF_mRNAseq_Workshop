@@ -6,8 +6,6 @@ output:
       keep_md: TRUE
 ---
 
-# Differential Expression Analysis
-
 * Differential Expression between conditions is determined from count data, which is modeled by a distribution (ie. Negative Binomial Distribution, Poisson, etc.) 
 * Generally speaking differential expression analysis is performed in a very similar manner to DNA microarrays, once normalization and transformations have been performed. 
 A lot of RNA-seq analysis has been done in R and so there are many packages available to analyze and view this data. Two of the best are: 
@@ -66,7 +64,8 @@ library("gplots")
 ##     lowess
 ```
 
-## Read in the counts table and preprocess
+
+**1a./** Read in the counts table and preprocess
 
 ```r
 counts <- read.delim("rnaseq_workshop_counts.txt", row.names = 1)
@@ -116,6 +115,95 @@ Create Differential Gene Expression List Object (DGEList) object
 
 ```r
 d0 <- DGEList(counts)
+```
+
+**1b\.** Read in Annotation
+
+```r
+anno <- read.delim("ensembl_hg_95.tsv",as.is=T)
+dim(anno)
+```
+
+```
+## [1] 64914    10
+```
+
+```r
+head(anno)
+```
+
+```
+##   Gene.stable.ID.version  Gene.name
+## 1      ENSG00000284532.1    MIR4723
+## 2      ENSG00000238933.1    RF00019
+## 3      ENSG00000275693.1    RF02116
+## 4      ENSG00000275451.1    MIR6085
+## 5      ENSG00000222870.1 RNU6-1328P
+## 6      ENSG00000252023.1  RNU6-581P
+##                                                             Gene.description
+## 1                          microRNA 4723 [Source:HGNC Symbol;Acc:HGNC:41660]
+## 2                                                                           
+## 3                                                                           
+## 4                          microRNA 6085 [Source:HGNC Symbol;Acc:HGNC:50002]
+## 5 RNA, U6 small nuclear 1328, pseudogene [Source:HGNC Symbol;Acc:HGNC:48291]
+## 6  RNA, U6 small nuclear 581, pseudogene [Source:HGNC Symbol;Acc:HGNC:47544]
+##   Gene.type Transcript.count Gene...GC.content Chromosome.scaffold.name
+## 1     miRNA                1             53.09                       17
+## 2  misc_RNA                1             45.54                        9
+## 3  misc_RNA                1             37.06                       10
+## 4     miRNA                1             54.55                       15
+## 5     snRNA                1             39.62                        7
+## 6     snRNA                1             38.10                        7
+##   Gene.start..bp. Gene.end..bp. Strand
+## 1        28360654      28360734      1
+## 2        61642383      61642494      1
+## 3        88992370      88992539      1
+## 4        62343029      62343138      1
+## 5        94495299      94495404      1
+## 6       120672871     120672975      1
+```
+
+```r
+tail(anno)
+```
+
+```
+##       Gene.stable.ID.version  Gene.name
+## 64909      ENSG00000284827.1 AC243837.1
+## 64910      ENSG00000285013.1 AC243837.3
+## 64911      ENSG00000285154.1 AC243837.4
+## 64912      ENSG00000284933.1    ARHGEF5
+## 64913      ENSG00000285363.1   MTRF1LP2
+## 64914      ENSG00000285114.1      GSDMC
+##                                                                                         Gene.description
+## 64909                                            olfactory receptor 2A7 [Source:NCBI gene;Acc:107987545]
+## 64910                                                                                                   
+## 64911                                  olfactory receptor 2A1/2A42-like [Source:NCBI gene;Acc:112268384]
+## 64912                       Rho guanine nucleotide exchange factor 5 [Source:HGNC Symbol;Acc:HGNC:13209]
+## 64913 mitochondrial translational release factor 1 like pseudogene 2 [Source:HGNC Symbol;Acc:HGNC:50612]
+## 64914                                                     gasdermin C [Source:HGNC Symbol;Acc:HGNC:7151]
+##                  Gene.type Transcript.count Gene...GC.content
+## 64909       protein_coding                2             50.11
+## 64910       protein_coding                2             54.76
+## 64911       protein_coding                2             56.13
+## 64912       protein_coding                2             48.98
+## 64913 processed_pseudogene                1             42.36
+## 64914       protein_coding                4             39.33
+##       Chromosome.scaffold.name Gene.start..bp. Gene.end..bp. Strand
+## 64909      CHR_HSCHR7_3_CTG4_4       144387992     144388921      1
+## 64910      CHR_HSCHR7_3_CTG4_4       144396023     144396316      1
+## 64911      CHR_HSCHR7_3_CTG4_4       144414782     144415702      1
+## 64912      CHR_HSCHR7_3_CTG4_4       144457568     144474951      1
+## 64913        CHR_HSCHR8_7_CTG7       129728744     129730445      1
+## 64914        CHR_HSCHR8_7_CTG7       129757225     129795938     -1
+```
+
+```r
+any(duplicated(anno$Gene.stable.ID))
+```
+
+```
+## [1] FALSE
 ```
 
 **2\.** Derive experiment metadata from the sample names
@@ -209,7 +297,7 @@ d0$samples
 
 Note: calcNormFactors doesn't _normalize_ the data, it just calculates normalization factors for use downstream.
 
-#### Filtering
+#### Filtering out genes
 
 Common filgter is to remove genes with a max value (X) of less then Y.
 
@@ -238,11 +326,27 @@ Multidimensional scaling (MDS) plot
 plotMDS(d, col = as.numeric(group))
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 The MDS plot tells you ALOT about what to expect from your experiment.
 
-**3\.** Voom transformation and calculation of variance weights
+**3\.** Extracting "normalized" expression table
+
+### RPKM vs. FPKM vs. CPM and Model Based
+* RPKM - Reads per kilobase per million mapped reads 
+* FPKM - Fragments per kilobase per million mapped reads
+* logCPM – log Counts per million [ good for producing MDS plots, estimate of normalized values in model based ]
+* Model based - original read counts are not themselves transformed, but rather correction factors are used in the DE model itself.
+
+We use the cpm function with log=TRUE to approximate normalized expression data.
+
+```r
+logcpm <- cpm(d, prior.count=2, log=TRUE)
+write.table(logcpm,"rnaseq_workshop_normalized_counts.txt",sep="\t",quote=F)
+```
+
+
+**4\.** Voom transformation and calculation of variance weights
 
 Specify the model to be fitted.  We do this before using voom since voom uses variances of the model residuals (observed - fitted)
 
@@ -284,7 +388,7 @@ Voom
 y <- voom(d, mm, plot = T)
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 What is voom doing?
 
@@ -303,7 +407,7 @@ The above is a "good" voom plot.  If your voom plot looks like the below, you mi
 tmp <- voom(d0, mm, plot = T)
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 
 ## Fitting linear models in limma
@@ -464,11 +568,14 @@ My opinion is these genes do not require further validation (e.g. with qrtPCR)
 You can dip below the FDR of 0.05, but in my opinion you then need to validate those genes (e.g. with qrtPCR)
 
 
-Write top.table to a file 
+Write top.table to a file, adding in cpms and annotation
 
 ```r
 top.table$Gene <- rownames(top.table)
 top.table <- top.table[,c("Gene", names(top.table)[1:6])]
+
+top.table <- data.frame(top.table,anno[match(top.table$Gene,anno$Gene.stable.ID.version),],logcpm[match(top.table$Gene,rownames(logcpm)),])
+
 write.table(top.table, file = "A.C_v_A.D.txt", row.names = F, sep = "\t", quote = F)
 ```
 
@@ -538,6 +645,9 @@ length(which(top.table$adj.P.Val < 0.05)) # number of DE genes
 ```r
 top.table$Gene <- rownames(top.table)
 top.table <- top.table[,c("Gene", names(top.table)[1:6])]
+
+top.table <- data.frame(top.table,anno[match(top.table$Gene,anno$Gene.stable.ID.version),],logcpm[match(top.table$Gene,rownames(logcpm)),])
+
 write.table(top.table, file = "A.C_v_B.C.txt", row.names = F, sep = "\t", quote = F)
 ```
 
@@ -1052,7 +1162,7 @@ slope <- coef(fit)["ENSG00000227232.5", "pH"]
 abline(a = intercept, b = slope)
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
 
 ```r
 slope
@@ -1085,7 +1195,7 @@ In limma, the $\beta$'s are the log fold changes.
 The error (residual) term $\epsilon$ is assumed to be normally distributed with a variance that is constant across the range of the data.
 
 Normally distributed means the residuals come from a distribution that looks like this:
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
 The log2 transformation that voom applies to the counts makes the data "normal enough", but doesn't completely stabilize the variance:
 
@@ -1093,7 +1203,7 @@ The log2 transformation that voom applies to the counts makes the data "normal e
 tmp <- voom(d, mm, plot = T)
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
 
 The log2 counts per million are more variable at lower expression levels.  The variance weights calculated by voom address this situation.
 
@@ -1112,40 +1222,25 @@ fit2 <- eBayes(fit2)
 top.table <- topTable(fit2, coef = 1, sort.by = "P", n = 40)
 ```
 
-**1\.** Extracting "normalized" expression table
-
-### RPKM vs. FPKM vs. CPM and Model Based
-* RPKM - Reads per kilobase per million mapped reads 
-* FPKM - Fragments per kilobase per million mapped reads
-* logCPM – log Counts per million [ good for producing MDS plots, estimate of normalized values in model based ]
-* Model based - original read counts are not themselves transformed, but rather correction factors are used in the DE model itself.
-
-We use the cpm function with log=TRUE to approximate normalized expression data.
-
-```r
-logcpm <- cpm(d, prior.count=2, log=TRUE)
-write.table(logcpm,"rnaseq_workshop_normalized_counts.txt",sep="\t",quote=F)
-```
-
-**2\.** Volcano plot
+**1\.** Volcano plot
 
 
 ```r
 volcanoplot(fit2,coef=1,highlight=8,names=fit$genes$NAME,main="factor1")
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-38-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
 
-**3\.** Heatmap
+**2\.** Heatmap
 
 ```r
 #using a red and blue colour scheme without traces and scaling each row
 heatmap.2(logcpm[rownames(top.table),],col=brewer.pal(11,"RdBu"),scale="row", trace="none")
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
 
-**4\.** 2 factor venn diagram
+**3\.** 2 factor venn diagram
 
 
 ```r
@@ -1153,7 +1248,7 @@ results <- decideTests(fit2)
 vennDiagram(results)
 ```
 
-![](orig_DE_Analysis_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
+![](orig_DE_Analysis_files/figure-html/unnamed-chunk-41-1.png)<!-- -->
 
 ## Both edgeR and limma voom have VERY comprehensive user manuals
 
