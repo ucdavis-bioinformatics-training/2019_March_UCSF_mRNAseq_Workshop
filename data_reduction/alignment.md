@@ -227,13 +227,14 @@ and let's run STAR (via srun) on the pair of streamed test files we created earl
 
 Once you've been given an interactive session we can run STAR. You can ignore the two warnings/errors and you know your on a cluster node because your server will change. Here you see I'm on tadpole, then after the srun command is successful, I am now on drove-13.
 
-
-> msettles@tadpole:/share/workshop/msettles/rnaseq_example/> HTS_testing$     srun --time=15:00:00 -n 8 --mem=32g --> > reservation=workshop --account=workshop --pty /bin/bash
-> srun: job 29372920 queued and waiting for resources
-> srun: job 29372920 has been allocated resources
-> groups: cannot find name for group ID 2020
-> bash: /home/msettles/.bashrc: Permission denied
-> msettles@drove-13:/share/workshop/msettles/rnaseq_example/> HTS_testing$
+```
+msettles@tadpole:/share/workshop/msettles/rnaseq_example/> HTS_testing$     srun --time=15:00:00 -n 8 --mem=32g --> > reservation=workshop --account=workshop --pty /bin/bash
+srun: job 29372920 queued and waiting for resources
+srun: job 29372920 has been allocated resources
+groups: cannot find name for group ID 2020
+bash: /home/msettles/.bashrc: Permission denied
+msettles@drove-13:/share/workshop/msettles/rnaseq_example/> HTS_testing$
+```
 
 Then run the star commands
 
