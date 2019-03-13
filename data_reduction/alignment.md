@@ -151,7 +151,7 @@ We need to first get the url for the genome fasta.
 
  When you are done, type "q" to exit.
 
- ```
+ ```bash
  #!/bin/bash
 
  #SBATCH --job-name=star_index # Job name
@@ -360,8 +360,7 @@ Reset the window by searching for HBB again. And zoom in 1 step.
 
  When you are done, type "q" to exit.
 
-```
-msettles@tadpole:/share/workshop/msettles/rnaseq_example$cat star.slurm
+```bash
 #!/bin/bash
 
 #SBATCH --job-name=star # Job name
