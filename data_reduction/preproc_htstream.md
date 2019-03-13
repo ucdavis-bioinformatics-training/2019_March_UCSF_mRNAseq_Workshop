@@ -82,7 +82,7 @@ So we zcat (uncompress and send to screen), pipe to head (param -400000) then pi
     module load htstream/1.0.0
     hts_Stats --help
 
-```
+<pre><code>---
 msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$ hts_Stats --help
 HTStream <https://github.com/ibest/HTStream> application: hts_Stats
 Version: 1.0.0-release
@@ -125,7 +125,7 @@ Output Options:
 
 
 Please report any issues, request for enhancement, or comments to <https://github.com/ibest/HTStream/issues>
-```
+---</code></pre>
 
 So now lets run hts_Stats and look at the output.
 
