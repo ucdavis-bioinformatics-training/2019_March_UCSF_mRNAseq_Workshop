@@ -653,6 +653,13 @@ Check the sizes of the files as well. Make sure there are no zero or near-zero s
 
 If, for some reason, your jobs did not finish or something else went wrong, please let one of us know and we will help.
 
+**IF** for some reason it didn't finish, is corrupted or you missed the session, you can copy over a completed copy
+
+    cp -r /share/biocore/workshops/2019_March_RNAseq/HTS_testing /share/workshop/$USER/rnaseq_example/.
+    cp -r /share/biocore/workshops/2019_March_RNAseq/01-HTS_Preproc /share/workshop/$USER/rnaseq_example/.
+    cp  /share/biocore/workshops/2019_March_RNAseq/summary_hts.txt /share/workshop/$USER/rnaseq_example/.
+
+
 ---
 
 **2.** Let's take a look at the differences between the input and output files. First look at the input file:
