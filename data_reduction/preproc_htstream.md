@@ -82,49 +82,49 @@ So we zcat (uncompress and send to screen), pipe to head (param -400000) then pi
     module load htstream/1.0.0
     hts_Stats --help
 
-```
-msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$ hts_Stats --help
-HTStream <https://github.com/ibest/HTStream> application: hts_Stats
-Version: 1.0.0-release
-The hts_Stats app produce basic statistics about the reads in a dataset.
-  Including the basepair composition and number of bases Q30.
-
-Standard Options:
-  -v [ --version ]                      Version print
-  -h [ --help ]                         Prints help documentation
-  -N [ --notes ] arg                    Notes for the stats JSON
-  -L [ --stats-file ] arg (=stats.log)  String for output stats file name
-  -A [ --append-stats-file ]            Append to stats file
-
-Input Options:
-  -1 [ --read1-input ] arg              Read 1 paired end fastq input <space
-                                        seperated for multiple files>
-  -2 [ --read2-input ] arg              Read 2 paired end fastq input <space
-                                        seperated for multiple files>
-  -U [ --singleend-input ] arg          Single end read fastq input <space
-                                        seperated for multiple files>
-  -T [ --tab-input ] arg                Tab input <space seperated for multiple
-                                        files>
-  -I [ --interleaved-input ] arg        Interleaved fastq input <space
-                                        seperated for multiple files>
-  -S [ --from-stdin ]                   STDIN input <MUST BE TAB DELIMITED
-                                        INPUT>
-
-Output Options:
-  -F [ --force ]                        Forces overwrite of files
-  -p [ --prefix ] arg (=hts_Stats)      Prefix for output files
-  -g [ --gzip-output ]                  Output gzipped files
-  -f [ --fastq-output ]                 Output to Fastq format <PE AND/OR SE
-                                        files>
-  -t [ --tab-output ]                   Output to tab-delimited file format
-  -i [ --interleaved-output ]           Output to interleaved fastq file <PE
-                                        ONLY>
-  -u [ --unmapped-output ]              Output to unmapped sam file format
-  -O [ --to-stdout ]                    Output to STDOUT in tab-delimited file
-                                        format
-
-
-Please report any issues, request for enhancement, or comments to <https://github.com/ibest/HTStream/issues>
+```bash
+# msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$ hts_Stats --help
+# HTStream <https://github.com/ibest/HTStream> application: hts_Stats
+# Version: 1.0.0-release
+# The hts_Stats app produce basic statistics about the reads in a dataset.
+#   Including the basepair composition and number of bases Q30.
+#
+# Standard Options:
+#   -v [ --version ]                      Version print
+#   -h [ --help ]                         Prints help documentation
+#   -N [ --notes ] arg                    Notes for the stats JSON
+#   -L [ --stats-file ] arg (=stats.log)  String for output stats file name
+#   -A [ --append-stats-file ]            Append to stats file
+#
+# Input Options:
+#   -1 [ --read1-input ] arg              Read 1 paired end fastq input <space
+#                                         seperated for multiple files>
+#   -2 [ --read2-input ] arg              Read 2 paired end fastq input <space
+#                                         seperated for multiple files>
+#   -U [ --singleend-input ] arg          Single end read fastq input <space
+#                                         seperated for multiple files>
+#   -T [ --tab-input ] arg                Tab input <space seperated for multiple
+#                                         files>
+#   -I [ --interleaved-input ] arg        Interleaved fastq input <space
+#                                         seperated for multiple files>
+#   -S [ --from-stdin ]                   STDIN input <MUST BE TAB DELIMITED
+#                                         INPUT>
+#
+# Output Options:
+#   -F [ --force ]                        Forces overwrite of files
+#   -p [ --prefix ] arg (=hts_Stats)      Prefix for output files
+#   -g [ --gzip-output ]                  Output gzipped files
+#   -f [ --fastq-output ]                 Output to Fastq format <PE AND/OR SE
+#                                         files>
+#   -t [ --tab-output ]                   Output to tab-delimited file format
+#   -i [ --interleaved-output ]           Output to interleaved fastq file <PE
+#                                         ONLY>
+#   -u [ --unmapped-output ]              Output to unmapped sam file format
+#   -O [ --to-stdout ]                    Output to STDOUT in tab-delimited file
+#                                         format
+#
+#
+# Please report any issues, request for enhancement, or comments to <https://github.com/ibest/HTStream/issues>
 ```
 
 So now lets run hts_Stats and look at the output.
@@ -139,17 +139,17 @@ Lets take a look at the output of stats
 
     ls -lah
 
-```
-msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$ls -lah
-total 29M
-drwxrwsr-x 2 msettles workshop    8 Mar  9 10:46 .
-drwxrwsr-x 5 msettles workshop    6 Mar  9 10:42 ..
--rw-rw-r-- 1 msettles workshop    0 Mar  9 10:45 C61.stats.log
--rw-rw-r-- 1 msettles workshop  660 Mar  9 10:46 SampleAC1.stats.log
--rw-rw-r-- 1 msettles workshop 6.8M Mar  9 10:46 SampleAC1.stats_R1.fastq.gz
--rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:46 SampleAC1.stats_R2.fastq.gz
--rw-rw-r-- 1 msettles workshop 6.8M Mar  9 10:42 SampleAC1.subset_R1.fastq.gz
--rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:42 SampleAC1.subset_R2.fastq.gz
+```bash
+# msettles@tadpole:/share/workshop/msettles/rnaseq_example/HTS_testing$ls -lah
+# total 29M
+# drwxrwsr-x 2 msettles workshop    8 Mar  9 10:46 .
+# drwxrwsr-x 5 msettles workshop    6 Mar  9 10:42 ..
+# -rw-rw-r-- 1 msettles workshop    0 Mar  9 10:45 C61.stats.log
+# -rw-rw-r-- 1 msettles workshop  660 Mar  9 10:46 SampleAC1.stats.log
+# -rw-rw-r-- 1 msettles workshop 6.8M Mar  9 10:46 SampleAC1.stats_R1.fastq.gz
+# -rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:46 SampleAC1.stats_R2.fastq.gz
+# -rw-rw-r-- 1 msettles workshop 6.8M Mar  9 10:42 SampleAC1.subset_R1.fastq.gz
+# -rw-rw-r-- 1 msettles workshop 7.5M Mar  9 10:42 SampleAC1.subset_R2.fastq.gz
 ```
 
 *Which files were generated from hts\_Stats?*
