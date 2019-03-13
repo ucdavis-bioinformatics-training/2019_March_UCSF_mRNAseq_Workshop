@@ -6,6 +6,8 @@ output:
       keep_md: TRUE
 ---
 
+# Differential Gene Expression Analysis in R
+
 * Differential Expression between conditions is determined from count data, which is modeled by a distribution (ie. Negative Binomial Distribution, Poisson, etc.) 
 * Generally speaking differential expression analysis is performed in a very similar manner to DNA microarrays, once normalization and transformations have been performed. 
 A lot of RNA-seq analysis has been done in R and so there are many packages available to analyze and view this data. Two of the best are: 
