@@ -28,6 +28,7 @@ title: March 2019 mRNA-Seq Workshop Home
 ## Intro to R and Rstudio
 * [Getting Started](intro2R/RStudio.md)
 * [Intro to R](intro2R/Intro2R.md)
+### EXTRA
 * [Prepare Data in R](intro2R/data_in_R_prepare.md)
 * [Data in R](intro2R/orig_data_in_R.md)
 
