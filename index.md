@@ -37,6 +37,8 @@ title: March 2019 mRNA-Seq Workshop Home
 * [Get Gene Annotation](differential_expression/annotation.md)
 * [Differential Expression Analysis](differential_expression/orig_DE_Analysis.md)
 
+* [Pathway Analysis](differential_expression/enrichment.md)
+
 <!--
 
 * [DE Analysis: counts to lists of DE genes](thursday/DE.html)
